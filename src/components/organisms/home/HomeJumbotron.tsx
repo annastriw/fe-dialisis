@@ -63,17 +63,16 @@ export default function HomeJumbotron() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.6, duration: 0.7 }}
           >
-<Link href={"/login"}>
-  <Button
-    size="lg"
-    className="mt-2 min-w-[200px] rounded-md font-semibold shadow-md
-               bg-primary text-white transition-all duration-300
-               hover:bg-primary/90 hover:shadow-lg hover:-translate-y-1"
-  >
-    Coba Sekarang
-  </Button>
-</Link>
-
+            <Link href={"/login"}>
+              <Button
+                size="lg"
+                className="mt-2 min-w-[200px] rounded-md font-semibold shadow-md
+                          bg-primary text-white transition-all duration-300
+                          hover:bg-primary/90 hover:shadow-lg hover:-translate-y-1"
+              >
+                Coba Sekarang
+              </Button>
+            </Link>
           </motion.div>
         </motion.div>
       </div>
