@@ -7,7 +7,7 @@ export default function SectionTitleSecondary({
 }: SectionTitleSecondaryProps) {
   return (
     <div className="mb-7 w-full">
-      <h1 className="font-paytone text-3xl capitalize">{title}</h1>
+      <h1 className="font-sans text-3xl capitalize">{title}</h1>
     </div>
   );
 }

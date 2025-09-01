@@ -17,7 +17,7 @@ export default function CardComunity() {
         {/* Gradient Header */}
         <div className="from-primary to-secondary relative flex min-h-[250px] md:min-h-[300px] lg:min-h-[350px] items-center justify-center overflow-hidden rounded-lg bg-gradient-to-tr p-6 sm:p-10 lg:p-16">
           <div className="flex flex-col gap-6 text-center max-w-2xl">
-            <h3 className="font-paytone text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
+            <h3 className="font-sans text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
               Bergabung di Forum Komunitas
             </h3>
             <p className="text-base sm:text-lg lg:text-xl text-white/90">

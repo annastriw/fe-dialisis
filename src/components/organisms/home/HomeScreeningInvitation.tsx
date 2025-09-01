@@ -26,7 +26,7 @@ export default function HomeScreeningInvitation() {
               viewport={{ once: true }}
               className="lg:w-1/2 flex flex-col gap-6 text-center md:text-left"
             >
-              <h1 className="font-paytone text-primary text-3xl md:text-4xl leading-snug">
+              <h1 className="font-sans text-primary text-3xl md:text-4xl leading-snug">
                 Ayo Cek Kesehatan Anda!
               </h1>
               <p className="text-base md:text-lg text-muted-foreground leading-relaxed">

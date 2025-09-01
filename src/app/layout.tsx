@@ -1,23 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Paytone_One } from "next/font/google";
 import "./globals.css";
 import GlobalProvider from "@/components/organisms/GlobalProvider";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const paytoneOne = Paytone_One({
-  variable: "--font-paytone-one",
-  weight: "400",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Dialisis Connect Edu",
@@ -53,9 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${paytoneOne.variable} antialiased`}
-      >
+      <body className="antialiased font-sans">
         <GlobalProvider>
           <main>{children}</main>
         </GlobalProvider>

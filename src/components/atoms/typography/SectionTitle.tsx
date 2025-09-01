@@ -17,7 +17,7 @@ export default function SectionTitle({ title }: SectionTitleProps) {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         {/* Text */}
-        <h1 className="from-primary to-secondary font-paytone inline-block bg-gradient-to-r bg-clip-text text-xl leading-snug text-transparent sm:text-2xl sm:leading-snug md:text-3xl md:leading-snug lg:text-4xl lg:leading-snug">
+        <h1 className="from-primary to-secondary font-sans inline-block bg-gradient-to-r bg-clip-text text-xl leading-snug text-transparent sm:text-2xl sm:leading-snug md:text-3xl md:leading-snug lg:text-4xl lg:leading-snug">
           {title}
         </h1>
       </motion.div>

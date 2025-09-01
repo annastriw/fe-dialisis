@@ -1,16 +1,22 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Quicksand:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --auth-pattern: url("/images/background/bg-auth-remove.png");
   --bg-footer-pattern: url("/images/assets/bg-footer.png");
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: 'Inter', sans-serif;
-  --font-heading: 'Poppins', sans-serif;
+
+  /* Fonts */
+  --font-sans: 'Inter', sans-serif;        /* Body text */
+  --font-heading: 'Quicksand', sans-serif; /* H1-H6 */
+  --font-mono: 'IBM Plex Mono', monospace; /* Monospace text */
+
+  /* Sidebar & UI Colors */
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -19,11 +25,15 @@
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar: var(--sidebar);
+
+  /* Charts */
   --color-chart-5: var(--chart-5);
   --color-chart-4: var(--chart-4);
   --color-chart-3: var(--chart-3);
   --color-chart-2: var(--chart-2);
   --color-chart-1: var(--chart-1);
+
+  /* UI Colors */
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -40,6 +50,8 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+
+  /* Border radius */
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -48,39 +60,76 @@
 
 :root {
   --radius: 0.625rem;
+
+  /* Background & Foreground */
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);
+
+  /* Card & Popover */
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: oklch(67.39% 0.1388 247.9);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(76.57% 0.091 171.82);
-  --secondary-foreground: oklch(67.39% 0.1388 247.9);
+
+  /* Primary & Secondary - Biru utama #2c7be4 */
+  --primary: #2c7be4;                       /* Warna utama */
+  --primary-foreground: oklch(0.985 0 0);   /* Putih untuk teks */
+  --secondary: #63a4ff;                     /* Biru lebih terang untuk highlight */
+  --secondary-foreground: var(--primary);
+
+  /* Muted / Accent */
   --muted: oklch(0.967 0.001 286.375);
   --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(67.39% 0.1388 247.9);
+  --accent: var(--secondary);
+  --accent-foreground: var(--primary);
+
+  /* Destructive */
   --destructive: oklch(0.577 0.245 27.325);
+
+  /* Borders & Inputs */
   --border: oklch(0.92 0.004 286.32);
   --input: oklch(0.92 0.004 286.32);
   --ring: oklch(0.705 0.015 286.067);
+
+  /* Chart colors */
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
+
+  /* Sidebar */
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-primary: oklch(0.21 0.006 285.885);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--secondary);
+  --sidebar-accent-foreground: var(--primary);
   --sidebar-border: oklch(0.92 0.004 286.32);
   --sidebar-ring: oklch(0.705 0.015 286.067);
 }
 
+/* Mode gelap */
+.dark {
+  --background: oklch(0.141 0.005 285.823);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.21 0.006 285.885);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.21 0.006 285.885);
+  --popover-foreground: oklch(0.985 0 0);
+
+  --primary: #2c7be4;
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: #63a4ff;
+  --secondary-foreground: var(--primary);
+
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--secondary);
+  --sidebar-accent-foreground: var(--primary);
+}
+
+/* Fonts */
 body {
   font-family: var(--font-sans);
 }
@@ -90,6 +139,11 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
 }
 
+code, pre {
+  font-family: var(--font-mono);
+}
+
+/* Utility */
 .rdp-vhidden {
   @apply hidden;
 }
