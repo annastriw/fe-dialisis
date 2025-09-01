@@ -111,7 +111,7 @@ export default function FormAuthRegister() {
   return (
     <div className="flex h-full items-center justify-center">
       <Card className="w-full max-w-md rounded-xl border-0 shadow-2xl">
-        <CardHeader className="text-center space-y-3">
+        <CardHeader className="pt-6 pb-2 text-center space-y-3">
           {/* Logo + Nama Website */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -146,7 +146,7 @@ export default function FormAuthRegister() {
           </CardDescription>
         </CardHeader>
 
-        <CardContent>
+        <CardContent className="px-6 pb-6">
           <Form {...form}>
             <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
               {/* Nama */}
@@ -298,7 +298,7 @@ export default function FormAuthRegister() {
           </Form>
 
           {/* Link ke Login */}
-          <div className="mt-6 text-center text-sm">
+          <div className="mt-4 text-center text-sm">
             Sudah punya akun?{" "}
             <Link href="/login" className="text-primary underline underline-offset-4">
               Masuk Sekarang

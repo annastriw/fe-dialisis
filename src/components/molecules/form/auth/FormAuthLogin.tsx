@@ -107,7 +107,7 @@ export default function FormAuthLogin() {
         </CardHeader>
 
         {/* Card Content */}
-        <CardContent>
+        <CardContent className="px-6 pb-6">
           <Form {...form}>
             <form className="space-y-3" onSubmit={form.handleSubmit(onSubmit)}>
               {/* Email / Username / Nomor Telepon */}
