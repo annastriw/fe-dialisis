@@ -27,18 +27,22 @@ import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { Eye, EyeOff } from "lucide-react";
+import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function FormAuthLogin() {
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
   const form = useForm<LoginType>({
     resolver: zodResolver(loginSchema),
     defaultValues: { login: "", password: "" },
     mode: "onChange",
   });
+
   const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
-  const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = async (body: LoginType) => {
     setIsLoading(true);
@@ -50,7 +54,7 @@ export default function FormAuthLogin() {
         description:
           res?.error === "CredentialsSignin"
             ? "Email atau password salah."
-            : "An error occurred, please try again.",
+            : "Terjadi kesalahan, silakan coba lagi.",
       });
       return;
     }
@@ -63,43 +67,80 @@ export default function FormAuthLogin() {
   };
 
   return (
-    <div className="flex h-full w-full items-center justify-center">
-      <Card className="w-full border-0 shadow-transparent">
-        <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold tracking-tight">
+    <div className="flex flex-col items-center justify-center w-full">
+      {/* Logo + Nama Website */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        whileHover={{ scale: 1.05 }}
+        className="mb-6 flex flex-col items-center gap-2"
+      >
+        <Link
+          href="/"
+          className="flex items-center gap-3 transition-all duration-300 hover:opacity-90"
+        >
+          <Image
+            src="/images/assets/bg-about-us.png"
+            alt="Dialisis Connect Edu"
+            width={56}
+            height={56}
+            className="h-14 w-14 object-contain transition-transform duration-300 hover:scale-105"
+          />
+          <motion.span
+            whileHover={{ scale: 1.05 }}
+            className="text-lg sm:text-xl font-semibold text-black dark:text-white transition-all duration-300 hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:bg-clip-text hover:text-transparent"
+          >
+            Dialisis Connect Edu
+          </motion.span>
+        </Link>
+      </motion.div>
+
+      {/* Card Login */}
+      <Card className="w-full max-w-sm sm:max-w-md lg:max-w-lg rounded-xl border-0 shadow-2xl">
+        <CardHeader className="text-center py-5 px-4 sm:px-6">
+          <CardTitle className="text-xl sm:text-2xl font-bold tracking-tight">
             Masuk
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="mt-1 text-sm">
             Selamat Datang! Masukkan email dan password anda.
           </CardDescription>
         </CardHeader>
-        <CardContent>
+
+        <CardContent className="px-5 sm:px-8 md:px-10 py-6">
           <Form {...form}>
-            <form className="space-y-5" onSubmit={form.handleSubmit(onSubmit)}>
+            <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
+              {/* Email / Login */}
               <FormField
                 control={form.control}
                 name="login"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email / Username / Nomor Telepon</FormLabel>
+                    <FormLabel className="text-sm font-medium">
+                      Email / Username / Nomor Telepon
+                    </FormLabel>
                     <FormControl>
                       <Input
                         type="text"
                         id="email"
                         placeholder="m@example.com"
                         {...field}
+                        className="text-sm py-2"
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+
+              {/* Password */}
               <FormField
                 control={form.control}
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel className="text-sm font-medium">
+                      Password
+                    </FormLabel>
                     <FormControl>
                       <div className="relative">
                         <Input
@@ -107,13 +148,13 @@ export default function FormAuthLogin() {
                           id="password"
                           placeholder="Masukkan password"
                           {...field}
-                          className="pr-10"
+                          className="pr-10 text-sm py-2"
                         />
                         <Button
                           type="button"
                           variant="ghost"
                           size="icon"
-                          className="text-muted-foreground absolute top-1/2 right-2 -translate-y-1/2"
+                          className="absolute top-1/2 right-2 -translate-y-1/2 text-muted-foreground"
                           onClick={() => setShowPassword((prev) => !prev)}
                           tabIndex={-1}
                         >
@@ -129,23 +170,31 @@ export default function FormAuthLogin() {
                   </FormItem>
                 )}
               />
-              <div>
-                <Button type="submit" className="w-full" disabled={isLoading}>
-                  {isLoading ? "Loading..." : "Masuk"}{" "}
+
+              {/* Submit Button */}
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <Button
+                  type="submit"
+                  className="w-full py-3 text-sm font-medium"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Loading..." : "Masuk"}
                 </Button>
-              </div>
+              </motion.div>
             </form>
           </Form>
-          <div className="mt-6 space-y-4 text-center">
-            <div className="text-center text-sm">
-              Belum punya akun? {""}
+
+          {/* Link Register */}
+          <div className="mt-6 text-center text-sm">
+            Belum punya akun?{" "}
+            <motion.span whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href="/register"
-                className="text-primary underline underline-offset-4"
+                className="font-medium text-primary underline underline-offset-4"
               >
                 Daftar Sekarang
               </Link>
-            </div>
+            </motion.span>
           </div>
         </CardContent>
       </Card>
