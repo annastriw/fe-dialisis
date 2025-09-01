@@ -15,7 +15,7 @@ export default function HomeFAQ() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="mx-auto w-full max-w-6xl" // lebih panjang dari max-w-4xl / 5xl
+        className="mx-auto w-full max-w-6xl"
       >
         <AccordionFAQ />
       </motion.div>
