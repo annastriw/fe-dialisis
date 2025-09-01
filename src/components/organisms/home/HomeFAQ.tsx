@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function HomeFAQ() {
   return (
-    <section className="mt-24 space-y-10 md:space-y-16">
+    <section className="py-0 px-2 sm:px-4 md:px-6 lg:px-8 space-y-8 md:space-y-10">
       <SectionTitle title="Pertanyaan Yang Sering Ditanyakan" />
       
       {/* Fade In Wrapper */}

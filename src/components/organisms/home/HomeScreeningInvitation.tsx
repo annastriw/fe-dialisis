@@ -13,10 +13,10 @@ export default function HomeScreeningInvitation() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       viewport={{ once: true }}
-      className="mt-24"
+      className="py-0 px-2 sm:px-4 md:px-6 lg:px-8" // mentok atas bawah
     >
       <Card className="border-0 shadow-2xl md:p-10 rounded-2xl bg-gradient-to-br from-white to-slate-50">
-        <CardContent>
+        <CardContent className="p-4 md:p-10">
           <div className="flex h-full flex-col-reverse items-center justify-between gap-10 md:flex-row">
             {/* Text Section */}
             <motion.div
