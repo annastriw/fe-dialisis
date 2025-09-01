@@ -67,55 +67,56 @@ export default function FormAuthLogin() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-full">
-      {/* Logo + Nama Website */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        whileHover={{ scale: 1.05 }}
-        className="mb-6 flex flex-col items-center gap-2"
-      >
-        <Link
-          href="/"
-          className="flex items-center gap-3 transition-all duration-300 hover:opacity-90"
+    <div className="flex min-h-screen items-center justify-center px-4">
+      <Card className="w-full max-w-md rounded-2xl border border-gray-200 shadow-lg dark:border-gray-700 dark:bg-gray-900">
+        {/* Logo + Nama Website */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          whileHover={{ scale: 1.05 }}
+          className="mt-6 flex flex-col items-center gap-2"
         >
-          <Image
-            src="/images/assets/bg-about-us.png"
-            alt="Dialisis Connect Edu"
-            width={56}
-            height={56}
-            className="h-14 w-14 object-contain transition-transform duration-300 hover:scale-105"
-          />
-          <motion.span
-            whileHover={{ scale: 1.05 }}
-            className="text-lg sm:text-xl font-semibold text-black dark:text-white transition-all duration-300 hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:bg-clip-text hover:text-transparent"
+          <Link
+            href="/"
+            className="flex items-center gap-3 transition-all duration-300 hover:opacity-90"
           >
-            Dialisis Connect Edu
-          </motion.span>
-        </Link>
-      </motion.div>
+            <Image
+              src="/images/assets/bg-about-us.png"
+              alt="Dialisis Connect Edu"
+              width={56}
+              height={56}
+              className="h-14 w-14 object-contain transition-transform duration-300 hover:scale-105"
+            />
+            <motion.span
+              whileHover={{ scale: 1.05 }}
+              className="text-lg sm:text-xl font-semibold text-black dark:text-white transition-all duration-300 hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:bg-clip-text hover:text-transparent"
+            >
+              Dialisis Connect Edu
+            </motion.span>
+          </Link>
+        </motion.div>
 
-      {/* Card Login */}
-      <Card className="w-full max-w-sm sm:max-w-md lg:max-w-lg rounded-xl border-0 shadow-2xl">
-        <CardHeader className="text-center py-5 px-4 sm:px-6">
-          <CardTitle className="text-xl sm:text-2xl font-bold tracking-tight">
+        {/* Card Header */}
+        <CardHeader className="text-center space-y-1">
+          <CardTitle className="text-xl font-bold tracking-tight">
             Masuk
           </CardTitle>
-          <CardDescription className="mt-1 text-sm">
-            Selamat Datang! Masukkan email dan password anda.
+          <CardDescription className="text-xs sm:text-sm">
+            Selamat datang! Masukkan email dan password anda.
           </CardDescription>
         </CardHeader>
 
-        <CardContent className="px-5 sm:px-8 md:px-10 py-6">
+        {/* Card Content */}
+        <CardContent>
           <Form {...form}>
-            <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
-              {/* Email / Login */}
+            <form className="space-y-3" onSubmit={form.handleSubmit(onSubmit)}>
+              {/* Email / Username / Nomor Telepon */}
               <FormField
                 control={form.control}
                 name="login"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm font-medium">
+                    <FormLabel className="text-sm">
                       Email / Username / Nomor Telepon
                     </FormLabel>
                     <FormControl>
@@ -124,7 +125,6 @@ export default function FormAuthLogin() {
                         id="email"
                         placeholder="m@example.com"
                         {...field}
-                        className="text-sm py-2"
                       />
                     </FormControl>
                     <FormMessage />
@@ -138,9 +138,7 @@ export default function FormAuthLogin() {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm font-medium">
-                      Password
-                    </FormLabel>
+                    <FormLabel className="text-sm">Password</FormLabel>
                     <FormControl>
                       <div className="relative">
                         <Input
@@ -148,7 +146,7 @@ export default function FormAuthLogin() {
                           id="password"
                           placeholder="Masukkan password"
                           {...field}
-                          className="pr-10 text-sm py-2"
+                          className="pr-10"
                         />
                         <Button
                           type="button"
@@ -172,29 +170,27 @@ export default function FormAuthLogin() {
               />
 
               {/* Submit Button */}
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <div>
                 <Button
                   type="submit"
-                  className="w-full py-3 text-sm font-medium"
+                  className="w-full"
                   disabled={isLoading}
                 >
                   {isLoading ? "Loading..." : "Masuk"}
                 </Button>
-              </motion.div>
+              </div>
             </form>
           </Form>
 
           {/* Link Register */}
-          <div className="mt-6 text-center text-sm">
+          <div className="mt-4 text-center text-sm">
             Belum punya akun?{" "}
-            <motion.span whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.95 }}>
-              <Link
-                href="/register"
-                className="font-medium text-primary underline underline-offset-4"
-              >
-                Daftar Sekarang
-              </Link>
-            </motion.span>
+            <Link
+              href="/register"
+              className="text-primary underline underline-offset-4"
+            >
+              Daftar Sekarang
+            </Link>
           </div>
         </CardContent>
       </Card>

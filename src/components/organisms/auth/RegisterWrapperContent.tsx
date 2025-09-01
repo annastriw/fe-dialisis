@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 
 export default function RegisterWrapperContent() {
   return (
-    <div className="relative h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+    <div className="relative flex h-screen flex-col md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
       {/* Tombol Sign In Desktop */}
       <Link
         href="/"
@@ -26,15 +26,15 @@ export default function RegisterWrapperContent() {
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
-        className="bg-muted relative hidden h-full flex-col p-10 text-white lg:flex dark:border-r"
+        className="relative hidden h-screen flex-col p-10 text-white lg:flex dark:border-r"
       >
-        {/* Background image */}
+        {/* Background */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="bg-primary bg-auth-pattern absolute inset-0 bg-contain bg-center bg-no-repeat" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/20" />
 
-        {/* Logo dan teks sebagai satu kesatuan */}
+        {/* Logo + Nama Website */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -46,16 +46,21 @@ export default function RegisterWrapperContent() {
             href="/"
             className="flex items-center gap-3 transition-all duration-300 hover:opacity-90"
           >
-            <Image
-              src="/images/assets/bg-about-us.png"
-              alt="Dialisis Connect"
-              width={75}
-              height={75}
-              className="h-12 w-12 object-contain"
-            />
-            <span className="font-semibold tracking-tight text-white transition-all duration-300 hover:bg-gradient-to-r hover:from-white hover:to-gray-200 hover:bg-clip-text hover:text-transparent">
-              Dialisis Connect Edu
-            </span>
+            <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-2">
+              <Image
+                src="/images/assets/bg-about-us.png"
+                alt="Dialisis Connect"
+                width={75}
+                height={75}
+                className="h-12 w-12 object-contain"
+              />
+              <motion.span
+                whileHover={{ scale: 1.05 }}
+                className="font-semibold tracking-tight text-white transition-all duration-300 hover:bg-gradient-to-r hover:from-white hover:to-gray-200 hover:bg-clip-text hover:text-transparent"
+              >
+                Dialisis Connect Edu
+              </motion.span>
+            </motion.div>
           </Link>
         </motion.div>
 
@@ -67,25 +72,23 @@ export default function RegisterWrapperContent() {
           className="relative z-20 mt-auto"
         >
           <blockquote className="space-y-2">
-            <p className="max-w-md text-lg">
-              Website Edukatif Penyakit Ginjal Kronis
-            </p>
+            <p className="max-w-md text-lg">Website Edukatif Penyakit Ginjal Kronis</p>
           </blockquote>
         </motion.div>
       </motion.div>
 
-      {/* Kanan: Form Register */}
+      {/* Kanan: Form Register (center + scroll vertical only) */}
       <motion.div
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
-        className="flex h-full items-center p-4 lg:p-8"
+        className="flex min-h-screen items-center justify-center overflow-y-auto p-6 lg:p-12"
       >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mx-auto flex w-full flex-col justify-center gap-y-4 sm:w-[350px]"
+          className="w-full max-w-md sm:max-w-lg md:max-w-xl"
         >
           <FormAuthRegister />
         </motion.div>

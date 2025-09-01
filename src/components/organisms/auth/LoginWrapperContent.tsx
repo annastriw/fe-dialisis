@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 export default function LoginWrapperContent() {
   return (
     <div className="relative flex h-screen flex-col md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
-      {/* Tombol Sign In Desktop */}
+      {/* Tombol Sign In (Desktop only) */}
       <Link
         href="/"
         className={cn(
@@ -28,7 +28,7 @@ export default function LoginWrapperContent() {
         transition={{ duration: 0.8 }}
         className="relative hidden h-screen flex-col p-10 text-white lg:flex dark:border-r"
       >
-        {/* Background image */}
+        {/* Background */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="bg-primary bg-auth-pattern absolute inset-0 bg-contain bg-center bg-no-repeat" />
         </div>
@@ -72,23 +72,25 @@ export default function LoginWrapperContent() {
           className="relative z-20 mt-auto"
         >
           <blockquote className="space-y-2">
-            <p className="max-w-md text-lg">Website Edukatif Penyakit Ginjal Kronis</p>
+            <p className="max-w-md text-lg">
+              Website Edukatif Penyakit Ginjal Kronis
+            </p>
           </blockquote>
         </motion.div>
       </motion.div>
 
-      {/* Kanan: Form Login (selalu center, scroll vertical only) */}
+      {/* Kanan: Form Login (center + scroll vertical only) */}
       <motion.div
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
-        className="flex min-h-screen items-center justify-center overflow-y-auto p-6 lg:p-12"
+        className="flex h-screen items-center justify-center overflow-y-auto p-6 lg:p-12"
       >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="w-full max-w-md sm:max-w-lg md:max-w-xl"
+          className="w-full max-w-sm sm:max-w-md lg:max-w-lg"
         >
           <FormAuthLogin />
         </motion.div>
