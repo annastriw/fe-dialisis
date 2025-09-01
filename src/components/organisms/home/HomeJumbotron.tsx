@@ -7,37 +7,39 @@ import { motion } from "framer-motion";
 
 export default function HomeJumbotron() {
   return (
-    <section className="flex items-center justify-center w-full px-0 py-2 sm:py-3 md:py-4 lg:py-5">
-      <div className="grid w-full items-center gap-4 sm:gap-6 md:gap-8 lg:grid-cols-2">
-        
+    <section className="w-full m-0 p-0 pb-8 mt-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-6 m-0 p-0">
+
         {/* IMAGE SECTION */}
         <motion.div
-          className="flex justify-center order-first lg:order-last"
+          className="flex justify-center lg:justify-end order-first lg:order-last"
           initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
+          whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
         >
           <Image
             src={"/images/assets/bg-hero.png"}
             alt="Hero"
             width={600}
             height={600}
-            className="w-full max-w-full"
+            className="w-full max-w-[500px] sm:max-w-[550px] md:max-w-[600px] lg:max-w-[650px]"
             priority
           />
         </motion.div>
 
         {/* TEXT SECTION */}
         <motion.div
-          className="flex flex-col items-center gap-4 sm:gap-5 text-center lg:items-start lg:text-left"
+          className="flex flex-col items-center lg:items-start text-center lg:text-left gap-4 sm:gap-5 md:gap-6"
           initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
+          viewport={{ once: true }}
         >
           <motion.h1
             className="font-sans uppercase tracking-wide text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-snug md:leading-tight"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            whileInView={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.9 }}
           >
             <span className="block">Platform Edukasi</span>
@@ -47,9 +49,9 @@ export default function HomeJumbotron() {
           </motion.h1>
 
           <motion.p
-            className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-full"
+            className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-full md:max-w-[480px] lg:max-w-[550px] leading-relaxed"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            whileInView={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.9 }}
           >
             Website ini menyediakan informasi terpercaya tentang terapi pengganti ginjal 
@@ -60,8 +62,9 @@ export default function HomeJumbotron() {
 
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.6, duration: 0.7 }}
+            viewport={{ once: true }}
           >
             <Link href={"/login"}>
               <Button
