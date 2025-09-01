@@ -9,7 +9,9 @@ export default async function GeneralLayout({
   return (
     <>
       <Navbar />
-      <div className="pad-x-xl py-8">{children}</div>
+      <div className="pad-x-xl py-6 md:py-8 lg:py-10">
+        {children}
+      </div>
       <Footer />
     </>
   );
