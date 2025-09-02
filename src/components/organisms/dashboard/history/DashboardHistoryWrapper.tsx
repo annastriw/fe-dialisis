@@ -38,7 +38,7 @@ export default function DashboardHistoryWrapper() {
         className="space-y-2"
         onValueChange={(value) => setSelectedTab(value)}
       >
-        <TabsList className="grid w-full max-w-[250px] grid-cols-3">
+        <TabsList className="grid w-full max-w-[250px] grid-cols-3 justify-center md:justify-start mx-auto md:mx-0">
           <TabsTrigger value="screening">Screening</TabsTrigger>
           <TabsTrigger value="pre-test">Pre Test</TabsTrigger>
           <TabsTrigger value="post-test">Post Test</TabsTrigger>

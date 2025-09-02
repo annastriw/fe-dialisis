@@ -13,7 +13,7 @@ export default async function DashboardHistoryPosTestDetailPage({
     <section>
       <DashboardTitle
         head="Detail Riwayat Post Test"
-        body="Menampilkan detail riwayat post test"
+        body="Halaman ini menampilkan informasi lengkap mengenai hasil post test yang telah Anda ikuti."
       />
       <DashboardHistoryPostTestDetailWrapper id={id} />
     </section>

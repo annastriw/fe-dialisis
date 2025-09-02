@@ -13,7 +13,7 @@ export default async function DashboardHistoryPreTestDetailPage({
     <section>
       <DashboardTitle
         head="Detail Riwayat Pre Test"
-        body="Menampilkan detail riwayat pre test"
+        body="Halaman ini menampilkan informasi lengkap mengenai hasil pre test yang telah Anda ikuti."
       />
       <DashboardHistoryPreTestDetailWrapper id={id} />
     </section>

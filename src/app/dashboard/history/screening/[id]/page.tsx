@@ -13,7 +13,7 @@ export default async function DashboardHistoryScreeningDetailPage({
     <section>
       <DashboardTitle
         head="Detail Riwayat Screening"
-        body="Menampilkan detail riwayat screening"
+        body="Halaman ini menampilkan informasi lengkap mengenai hasil screening yang telah Anda lakukan."
       />
       <DashboardHistoryScreeningDetailWrapper id={id} />
     </section>
