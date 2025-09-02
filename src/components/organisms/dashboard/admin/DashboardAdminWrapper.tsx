@@ -1,31 +1,38 @@
-import CardCAPDMaterialCount from "@/components/molecules/card/CardDashboardTitle";
+// DashboardAdminWrapper.tsx
+"use client";
+
+import CardDashboardTitle from "@/components/molecules/card/CardDashboardTitle";
 import { CircleHelp, NotepadText, User, Users } from "lucide-react";
 
 export default function DashboardAdminWrapper() {
   return (
-    <div className="space-y-4">
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-        <CardCAPDMaterialCount
+    <>
+      <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <CardDashboardTitle
           title="Forum Komunitas"
           icon={Users}
           link="admin/discussions"
+          description="Terhubung dengan pasien dan tenaga medis untuk berdiskusi dan berbagi pengalaman secara profesional."
         />
-        <CardCAPDMaterialCount
+        <CardDashboardTitle
           title="Laporan Keseluruhan"
           icon={NotepadText}
           link="admin/reports"
+          description="Akses laporan komprehensif mengenai aktivitas, screening, dan hasil tes seluruh pengguna."
         />
-        <CardCAPDMaterialCount
+        <CardDashboardTitle
           title="Manajemen Pengguna"
-          link="admin/users"
           icon={User}
+          link="admin/users"
+          description="Atur akun pasien dan tenaga medis dengan mudah, kelola informasi pribadi, lakukan reset password, dan hapus akun dengan aman untuk mendukung kelancaran administrasi."
         />
-        <CardCAPDMaterialCount
+        <CardDashboardTitle
           title="FAQ"
-          link="admin/faqs"
           icon={CircleHelp}
+          link="admin/faqs"
+          description="Kelola daftar pertanyaan dan jawaban yang sering diajukan untuk membantu pengguna secara efisien."
         />
       </div>
-    </div>
+    </>
   );
 }
