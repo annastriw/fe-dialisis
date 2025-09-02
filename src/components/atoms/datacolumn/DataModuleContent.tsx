@@ -4,7 +4,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
 import { id } from "date-fns/locale";
 import Link from "next/link";
-import { Eye, SquarePen, Trash2 } from "lucide-react";
+import { SquarePen, Trash2 } from "lucide-react";
 import ActionButton from "@/components/molecules/datatable/ActionButton";
 import { ModuleContent } from "@/types/modules/modules";
 
@@ -90,13 +90,6 @@ export const moduleContentColumns: ColumnDef<ModuleContent>[] = [
 
       return (
         <ActionButton>
-          <Link
-            href={`/dashboard/admin/sub-modules/${data.id}`}
-            className="flex items-center text-gray-700 hover:underline"
-          >
-            <Eye className="h-4 w-4" />
-            <span className="ml-2">Detail</span>
-          </Link>
           <Link
             href={`/dashboard/admin/sub-modules/${data.id}/edit`}
             className="flex items-center text-yellow-600 hover:text-yellow-800 hover:underline"

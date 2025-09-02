@@ -8,9 +8,8 @@ export default function AlertInformationCreateModuleContent() {
       <AlertTitle>Informasi</AlertTitle>
       <AlertDescription>
         <div>
-          Untuk menambahkan file seperti booklet PDF, video, atau materi lain, 
-          silakan klik tombol detail materi di bawah terlebih dahulu. 
-          Pastikan setiap materi dilengkapi agar modul tetap lengkap dan mudah diakses.
+          Tambahkan file (PDF, video, atau materi lain) lewat tombol detail di bawah. 
+          Pastikan setiap materi lengkap agar modul mudah diakses.
         </div>
       </AlertDescription>
     </Alert>
