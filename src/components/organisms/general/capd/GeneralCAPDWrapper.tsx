@@ -1,51 +1,97 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function GeneralCAPDWrapper() {
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.2, duration: 0.7 },
+    }),
+  };
+
+  const paragraphs = [
+    <>
+      ontinuous Ambulatory Peritoneal Dialysis (CAPD) merupakan jenis dialisis
+      yang menggunakan membran peritoneal sebagai membran semipermeabel.{" "}
+      <span className="font-semibold text-blue-700">
+        Metode CAPD dilakukan dengan memanfaatkan luas peritoneum sekitar 22.000
+        cm² sebagai permukaan difusi.
+      </span>
+    </>,
+    <>
+      Metode CAPD dilakukan dengan cara mengalirkan cairan pembersih melalui
+      kateter ke bagian perut.{" "}
+      <span className="font-semibold text-blue-700">
+        Lapisan perut (peritoneum) berfungsi menyaring dan membuang sisa produk
+        metabolisme.
+      </span>{" "}
+      Cairan yang mengandung limbah kemudian dialirkan keluar dan diganti
+      beberapa kali dalam sehari. Biasanya dimasukkan sekitar 2 liter cairan
+      dialisis ke dalam rongga peritoneal melalui kateter permanen.
+    </>,
+    <>
+      Sebagai salah satu terapi pengganti ginjal, CAPD dapat dilakukan dengan
+      aman di berbagai tempat.{" "}
+      <span className="font-semibold text-blue-700">
+        Proses memasukkan cairan dialisat berlangsung 20–30 menit, kemudian
+        dibiarkan 4–6 jam (dwelling time) untuk pertukaran zat melalui difusi,
+        osmosis, dan transpor aktif.
+      </span>{" "}
+      Walaupun praktis, prosedur ini harus dilakukan di lingkungan bersih untuk
+      mencegah infeksi maupun komplikasi.
+    </>,
+  ];
+
   return (
-    <div className="space-y-4 text-justify">
-      <Image
-        src={"/images/content/capd.jpeg"}
-        alt="CAPD"
-        width={1000}
-        height={1000}
-        loading="lazy"
-        className="rounded-xl md:max-w-[700px]"
-      />
-      <div>
-        Continuous Ambulatory Peritoneal Dialysis (CAPD) merupakan jenis
-        dialisis yang menggunakan membran peritoneal sebagai membran
-        semipermeabel.(18) Metode CAPD dilakukan dengan menggunakan permukaan
-        peritoneum yang luasnya 22.000 cm2 sebagai permukaan difusi.
-      </div>
-      <div>
-        Metode CAPD dilakukan dengan cara mengalirkan cairan pembersih melalui
-        kateter ke bagian perut, kemudian lapisan perut (peritoneum) akan
-        menyaring dan membuang sisa produk yang tidak digunakan kembali oleh
-        darah. Kemudian, dalam beberapa saat cairan yang mengandung limbah yang
-        telah disaring akan mengalir keluar dan dapat dibuang. Metode CAPD
-        dilakukan dengan cara memasukkan cairan dialisis ke dalam tubuh pasien
-        sebanyak 2 liter, melalui kateter yang telah dipasang permanen di dalam
-        perut pasien. Zat sisa yang tersebar dalam tubuh seperti urea, vitamin
-        K, serta elektrolit yang berlebih akan menuju cairan dialisis yang
-        kemudian akan dialirkan dan keluar serta diganti beberapa kali dalam
-        sehari.
-      </div>
-      <div>
-        Metode CAPD sebagai salah satu terapi pengganti ginjal dapat diberikan
-        dengan aman dan efektif dilakukan dimana saja dengan mekanisme
-        memasukkan cairan dialisat ke dalam rongga peritoneal dengan melalui
-        kateter serta kantung yang terbagi menjadi dua yaitu kantung untung
-        cairan masuk (dialisat solution) dan kantong pembuangan (drainage bag)
-        dari peritoneal. Proses pemasukan cairan dialisat biasanya berlangsung
-        selama 20-30 menit, kemudian dibiarkan selama 4-6 jam (dwelling time)
-        bergantung pada konsentrasi cairan untuk mencapai keseimbangan. Selama
-        fase dwelling time akan terjadi proses pertukaran dari cairan dialisat
-        kotor menjadi cairan dialisat yang bersih melalui difusi, osmosis, dan
-        transpor aktif. Walaupun memiliki keunggulan dari aspek kemudahan jika
-        dibandingkan dengan terapi gagal ginjal lainnya, penggunaan terapi CAPD
-        harus tetap mengedepankan tempat yang bersih untuk menukar cairan
-        dialisis karena rentan adanya kontaminasi bakteri yang dapat menimbulkan
-        infeksi maupun komplikasi jika tidak ditangani dengan baik.
+    <div className="flex min-h-screen flex-col items-center justify-start px-4">
+      {/* Container gambar + artikel */}
+      <div className="w-full max-w-4xl mx-auto">
+        {/* Gambar */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={0}
+          className="w-full"
+        >
+          <Image
+            src={"/images/content/capd.jpeg"}
+            alt="Continuous Ambulatory Peritoneal Dialysis"
+            width={1600}
+            height={1000}
+            loading="lazy"
+            className="w-full h-auto rounded-xl shadow-md object-cover"
+          />
+        </motion.div>
+
+        {/* Artikel */}
+        <div className="flex flex-col space-y-6 md:space-y-8 text-base md:text-lg leading-loose tracking-normal text-gray-800 dark:text-gray-200 mt-6">
+          {paragraphs.map((paragraph, i) => (
+            <motion.p
+              key={i}
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              custom={i + 1}
+              className="text-justify"
+            >
+              {i === 0 ? (
+                <>
+                  <span className="float-left mr-2 text-6xl md:text-7xl font-extrabold text-blue-800 leading-none">
+                    C
+                  </span>
+                  {paragraph}
+                </>
+              ) : (
+                paragraph
+              )}
+            </motion.p>
+          ))}
+        </div>
       </div>
     </div>
   );

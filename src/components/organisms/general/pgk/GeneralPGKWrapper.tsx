@@ -1,53 +1,102 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function GeneralPGKWrapper() {
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.2, duration: 0.7 },
+    }),
+  };
+
+  const paragraphs = [
+    <>
+      enyakit ginjal kronis (PGK) adalah gangguan fungsi ginjal progresif
+      yang tidak dapat pulih, menyebabkan tubuh gagal menjaga keseimbangan
+      metabolisme, cairan, dan elektrolit.{" "}
+      <span className="font-semibold text-blue-700">
+        Penyakit ginjal kronis (PGK) ditandai oleh LFG kurang dari 60 ml/menit
+        dan berlangsung lebih dari tiga bulan.
+      </span>{" "}
+      Riskesdas pada tahun 2018 mencatat 713.783 orang di Indonesia
+      terdiagnosis gagal ginjal kronis, termasuk 96.794 penderita di Jawa
+      Tengah. Penderita biasanya menjalani terapi pengganti ginjal seperti
+      Hemodialisis atau Continuous Ambulatory Peritoneal Dialysis (CAPD).
+    </>,
+    <>
+      PGK seringkali berkembang perlahan dan tidak menunjukkan gejala pada
+      tahap awal.{" "}
+      <span className="font-semibold text-blue-700">
+        Gejala umum meliputi kelelahan, pembengkakan, perubahan frekuensi buang
+        air kecil, dan tekanan darah tinggi.
+      </span>{" "}
+      Faktor risiko utama antara lain diabetes melitus, hipertensi, riwayat
+      keluarga, serta gaya hidup tidak sehat. Penting dilakukan skrining dan
+      pemeriksaan rutin untuk mencegah progresivitas penyakit.
+    </>,
+    <>
+      Penanganan PGK memerlukan pendekatan multidisiplin, termasuk pola makan
+      rendah protein dan garam serta pemantauan fungsi ginjal.{" "}
+      <span className="font-semibold text-blue-700">
+        Pada tahap akhir, pasien membutuhkan terapi pengganti ginjal seperti
+        hemodialisis, CAPD, atau transplantasi.
+      </span>{" "}
+      Pencegahan dengan edukasi masyarakat—cukup minum air putih, hindari
+      penggunaan obat tanpa resep, serta menjaga tekanan dan gula darah tetap
+      stabil—sangat penting untuk menekan angka kejadian PGK di Indonesia.
+    </>,
+  ];
+
   return (
-    <div className="flex flex-col gap-8">
-      <Image
-        src={"/images/content/pgk.jpg"}
-        alt="Penyakit Ginjal Kronik"
-        width={1000}
-        height={1000}
-        loading="lazy"
-        className="rounded-xl md:max-w-[700px]"
-      />
-      <div className="text-justify">
-        Penyakit ginjal kronis (PGK) adalah gangguan fungsi ginjal progresif
-        yang tidak dapat pulih, menyebabkan tubuh gagal menjaga keseimbangan
-        metabolisme, cairan, dan elektrolit. Penyakit ginjal kronis (PGK) adalah
-        penurunan fungsi ginjal yang berlangsung lebih dari tiga bulan, ditandai
-        oleh LFG kurang dari 60 ml/menit. Riskesdas pada tahun 2018 mendata
-        jumlah pasien yang terdiagnosis dengan gagal ginjal kronis di Indonesia
-        tercatat sebanyak 713.783 orang. Tingkat provinsi Jawa Tengah memiliki
-        prevalensi penyakit ginjal yang mencapai 0,42%, dengan total penderita
-        sebanyak 96.794 orang. Penderita penyakit ginjal kronis biasanya akan
-        melakukan penanganan terapi pengganti ginjal seperti Hemodialisis atau
-        Continuous Ambulatory Peritoneal Dialysis (CAPD).
-      </div>
-      <div className="text-justify">
-        PGK seringkali berkembang secara perlahan dan tidak menunjukkan gejala
-        pada tahap awal, sehingga banyak penderita yang baru mengetahui kondisi
-        ini ketika sudah memasuki tahap lanjut. Gejala umum yang dapat muncul
-        antara lain kelelahan, pembengkakan di tangan dan kaki, perubahan
-        frekuensi buang air kecil, dan tekanan darah tinggi. Faktor risiko utama
-        dari PGK meliputi diabetes melitus, hipertensi, riwayat penyakit ginjal
-        dalam keluarga, serta gaya hidup yang tidak sehat seperti merokok,
-        konsumsi alkohol, dan pola makan tinggi garam. Penting untuk melakukan
-        skrining dan pemeriksaan rutin, terutama bagi individu dengan risiko
-        tinggi, untuk mencegah progresivitas penyakit.
-      </div>
-      <div className="text-justify">
-        Penanganan PGK memerlukan pendekatan multidisiplin yang mencakup
-        pengelolaan penyakit penyerta, pengaturan pola makan rendah protein dan
-        garam, serta pemantauan fungsi ginjal secara berkala. Pada tahap akhir,
-        pasien PGK biasanya membutuhkan terapi pengganti ginjal seperti
-        hemodialisis yang dilakukan beberapa kali dalam seminggu, CAPD yang
-        dapat dilakukan secara mandiri di rumah, atau transplantasi ginjal jika
-        tersedia donor yang cocok. Pencegahan dan edukasi masyarakat mengenai
-        pentingnya menjaga kesehatan ginjal, seperti dengan cukup minum air
-        putih, menghindari penggunaan obat-obatan tanpa resep secara berlebihan,
-        serta menjaga tekanan darah dan gula darah tetap stabil, merupakan
-        langkah krusial dalam menekan angka kejadian PGK di Indonesia.
+    <div className="flex min-h-screen flex-col items-center justify-start px-4">
+      {/* Container gambar + artikel */}
+      <div className="w-full max-w-4xl mx-auto">
+        {/* Gambar */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={0}
+          className="w-full"
+        >
+          <Image
+            src={"/images/content/pgk.jpg"}
+            alt="Penyakit Ginjal Kronik"
+            width={1600}
+            height={1000}
+            loading="lazy"
+            className="w-full h-auto rounded-xl shadow-md object-cover"
+          />
+        </motion.div>
+
+        {/* Artikel */}
+        <div className="flex flex-col space-y-6 md:space-y-8 text-base md:text-lg leading-loose tracking-normal text-gray-800 dark:text-gray-200 mt-6">
+          {paragraphs.map((paragraph, i) => (
+            <motion.p
+              key={i}
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              custom={i + 1}
+              className="text-justify"
+            >
+              {i === 0 ? (
+                <>
+                  <span className="float-left mr-2 text-6xl md:text-7xl font-extrabold text-blue-800 leading-none">
+                    P
+                  </span>
+                  {paragraph}
+                </>
+              ) : (
+                paragraph
+              )}
+            </motion.p>
+          ))}
+        </div>
       </div>
     </div>
   );

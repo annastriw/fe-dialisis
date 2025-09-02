@@ -3,7 +3,7 @@ import GeneralHemodialisisWrapper from "@/components/organisms/general/hemodiali
 
 export default function GeneralHemodialisisPage() {
   return (
-    <section>
+    <section className="min-h-screen px-4 py-10 sm:px-6 lg:px-20">
       <GeneralTitle title="Hemodialisis" />
       <GeneralHemodialisisWrapper />
     </section>
