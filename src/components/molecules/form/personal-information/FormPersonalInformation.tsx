@@ -176,7 +176,7 @@ export default function FormCreatePersonalInformation() {
                                 date ? format(date, "yyyy-MM-dd") : "",
                               )
                             }
-                            fromYear={1960}
+                            fromYear={1930}
                             toYear={2030}
                           />
                         </PopoverContent>
