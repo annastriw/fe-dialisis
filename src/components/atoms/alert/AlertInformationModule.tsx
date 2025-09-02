@@ -14,8 +14,9 @@ export default function AlertInformationModule({
       <AlertTitle>Informasi</AlertTitle>
       <AlertDescription>
         <div>
-          Materi yang tersedia berdasarkan pada jenis pasien, dan Anda termasuk
-          jenis pasien <span className="font-semibold uppercase">{type}</span>.
+          Materi yang tersedia telah disesuaikan dengan jenis pasien Anda.  
+          Saat ini, Anda termasuk kategori{" "}
+          <span className="font-semibold uppercase">{type}</span>, sehingga materi yang ditampilkan relevan dan mendukung pemahaman serta perawatan diri Anda.
         </div>
       </AlertDescription>
     </Alert>

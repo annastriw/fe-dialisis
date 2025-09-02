@@ -6,9 +6,10 @@ export default function DashboardAdminUsersPage() {
     <section>
       <DashboardTitle
         head="Pengguna"
-        body="Menampilkan daftar pengguna yang terdaftar"
+        body="Kelola akun pengguna termasuk pasien dan tenaga medis, pantau informasi, lakukan reset password, atau hapus akun sesuai kebutuhan."
       />
       <DashboardAdminUsersWrapper />
     </section>
   );
 }
+

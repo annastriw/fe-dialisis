@@ -8,6 +8,7 @@ import { useGetAllDiscussion } from "@/http/discussions/get-all-discussions";
 import { Plus } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
+import AlertInformationAdminDiscussions from "@/components/atoms/alert/AlertInformationAdminDiscussions";
 
 export default function DashboardAdminDiscussionWrapper() {
   const { data: session, status } = useSession();
@@ -28,17 +29,22 @@ export default function DashboardAdminDiscussionWrapper() {
   return (
     <>
       <div className="space-y-4">
+        {/* Alert informasi */}
+        <AlertInformationAdminDiscussions />
+
         <div>
           <Button onClick={handleDialogCreateDiscussionOpen}>
             <Plus /> Tambah Topik Diskusi
           </Button>
         </div>
+
         <DataTable
           data={data?.data ?? []}
           columns={discussionColumns}
           isLoading={isPending}
         />
       </div>
+
       <DialogCreateDiscussion
         open={isDialogCreateDiscussionOpen}
         setOpen={setIsDialogCreateDiscussionOpen}

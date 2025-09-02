@@ -6,7 +6,7 @@ export default function DashboardScreeningPage() {
     <section>
       <DashboardTitle
         head="Screening"
-        body="Menampikan daftar screening yang tersedia"
+        body="Kelola daftar screening yang tersedia untuk pengguna, tambahkan atau sesuaikan jenis screening agar tetap relevan dan bermanfaat."
       />
       <DashboardScreeningWrapper />
     </section>

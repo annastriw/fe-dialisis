@@ -6,9 +6,10 @@ export default function DashboardAdminDiscussionsPage() {
     <section>
       <DashboardTitle
         head="Forum Komunitas"
-        body="Menampilkan daftar topik diskusi di forum komunitas"
+        body="Kelola dan pantau daftar topik diskusi antara pasien dan tenaga medis, tambahkan topik baru, atau lihat riwayat diskusi dengan mudah."
       />
       <DashboardAdminDiscussionWrapper />
     </section>
   );
 }
+

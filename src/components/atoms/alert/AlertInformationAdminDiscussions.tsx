@@ -1,19 +1,16 @@
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { TriangleAlert } from "lucide-react";
 
-export default function AlertInformationCreateModuleContent() {
+export default function AlertInformationAdminDiscussions() {
   return (
     <Alert variant={"warning"} className="mb-4 w-full md:w-fit">
       <TriangleAlert className="!text-yellow-600" />
       <AlertTitle>Informasi</AlertTitle>
       <AlertDescription>
         <div>
-          Untuk menambahkan file seperti booklet PDF, video, atau materi lain, 
-          silakan klik tombol detail materi di bawah terlebih dahulu. 
-          Pastikan setiap materi dilengkapi agar modul tetap lengkap dan mudah diakses.
+          Untuk melihat riwayat diskusi antar pasien dan tenaga medis, silakan klik tombol Detail.
         </div>
       </AlertDescription>
     </Alert>
   );
 }
-

@@ -4,8 +4,12 @@ import DashboardAdminFAQWrapper from "@/components/organisms/dashboard/admin/faq
 export default function DashboardAdminFAQs() {
   return (
     <section>
-      <DashboardTitle head="FAQ" body="Menampilkan daftar pertanyaan di FAQ" />
+      <DashboardTitle
+        head="FAQ"
+        body="Kelola dan pantau daftar pertanyaan serta jawaban di FAQ, pastikan informasi yang tersedia jelas dan membantu pengguna."
+      />
       <DashboardAdminFAQWrapper />
     </section>
   );
 }
+

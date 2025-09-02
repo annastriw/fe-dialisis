@@ -6,9 +6,10 @@ export default function DashboardModulesPage() {
     <section>
       <DashboardTitle
         head="Modul Materi"
-        body="Menampilkan semua modul dan materi"
+        body="Akses berbagai modul edukasi tentang penyakit ginjal, CAPD, dan Hemodialisis dalam bentuk video, booklet, dan artikel untuk mendukung pemahaman dan perawatan diri Anda."
       />
       <DashboardModulesWrapper />
     </section>
   );
 }
+

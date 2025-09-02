@@ -11,9 +11,10 @@ export default function DashboardAdminPage() {
     <>
       <DashboardTitle
         head="Beranda Admin"
-        body="Selamat datang di halaman beranda admin Dialisis Connect Edu"
+        body="Selamat datang di beranda admin Dialisis Connect Edu. Kelola forum, laporan, dan akun pengguna dengan mudah untuk memastikan pengalaman pasien dan tenaga medis berjalan optimal."
       />
       <DashboardAdminWrapper />
     </>
   );
 }
+

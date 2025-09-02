@@ -6,9 +6,10 @@ export default function DashboardMedicalDiscussionPage() {
     <section>
       <DashboardTitle
         head="Forum Komunitas"
-        body="Menampilkan topik diskusi di forum komunitas"
+        body="Terhubung dengan pasien dan tenaga medis lain, berdiskusi, berbagi pengalaman, serta mendapatkan tips profesional untuk mendukung perawatan dan edukasi."
       />
       <DashboardMedicalDiscussionWrapper />
     </section>
   );
 }
+

@@ -30,7 +30,7 @@ export default function DashboardDiscussionWrapper() {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between md:gap-0">
         <DashboardTitle
           head="Forum Komunitas"
-          body="Menampilkan topik diskusi di forum komunitas"
+          body="Terhubung dengan pasien dan tenaga medis lain, berdiskusi, berbagi pengalaman, serta mendapatkan tips profesional untuk mendukung perawatan dan edukasi."
         />
         <Link
           href={"/dashboard/discussions/your-question"}

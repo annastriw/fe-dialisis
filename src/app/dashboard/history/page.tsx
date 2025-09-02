@@ -6,9 +6,10 @@ export default function HistoryPage() {
     <section>
       <DashboardTitle
         head="Riwayat"
-        body="Menampilkan riwayat screening, pre test dan post test"
+        body="Telusuri riwayat screening, pre-test, dan post-test Anda untuk memantau kemajuan kesehatan dan pembelajaran secara mudah."
       />
       <DashboardHistoryWrapper />
     </section>
   );
 }
+

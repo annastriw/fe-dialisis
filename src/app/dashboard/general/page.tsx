@@ -6,9 +6,10 @@ export default function GeneralPage() {
     <section>
       <DashboardTitle
         head="Penjelasan Umum"
-        body="Menampikan penjelasan umum tentang Kesehatan Ginjal"
+        body="Kenali penyakit ginjal kronis, faktor risiko, gejala, dan opsi perawatan seperti Hemodialisis dan CAPD. Panduan ini membantu Anda menjaga kesehatan ginjal dengan aman dan efektif."
       />
       <DashboardGeneral />
     </section>
   );
 }
+

@@ -10,18 +10,23 @@ export default function DashboardAdminModulesPage() {
       <div className="flex items-center justify-between">
         <DashboardTitle
           head="Modul"
-          body="Menampilkan semua daftar modul yang tersedia"
+          body="Kelola seluruh modul edukasi yang tersedia, pantau materi agar tetap relevan dan bermanfaat bagi pasien"
         />
         <div>
-          <Link href={`/dashboard/admin/modules/create`}>
-            <Button>
-              <Plus />
-              Tambah Modul
-            </Button>
-          </Link>
+          {/* Tombol Tambah Modul disembunyikan */}
+          {false && (
+            <Link href={`/dashboard/admin/modules/create`}>
+              <Button>
+                <Plus />
+                Tambah Modul
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
       <DashboardAdminModulesWrapper />
     </section>
   );
 }
+
+

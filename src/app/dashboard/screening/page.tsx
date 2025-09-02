@@ -4,8 +4,12 @@ import DashboardScreeningWrapper from "@/components/organisms/dashboard/screenin
 export default function ScreeningPage() {
   return (
     <section>
-      <DashboardTitle head="Screening" body="Menampilkan halaman screening" />
+      <DashboardTitle
+        head="Screening"
+        body="Lakukan berbagai screening kesehatan dengan mudah untuk memahami kondisi tubuh Anda dan mendapatkan rekomendasi yang tepat."
+      />
       <DashboardScreeningWrapper />
     </section>
   );
 }
+

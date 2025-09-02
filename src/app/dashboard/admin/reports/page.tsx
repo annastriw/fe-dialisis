@@ -6,7 +6,7 @@ export default function DashboardAdminReportsPage() {
     <section>
       <DashboardTitle
         head="Laporan Keseluruhan"
-        body="Menampilkan semua laporan keseluruhan"
+        body="Pantau riwayat screening, pre-test, dan post-test yang telah dikerjakan pengguna, sehingga Anda dapat memantau perkembangan dan hasilnya dengan mudah."
       />
       <DashboardAdminReportWrapper />
     </section>
