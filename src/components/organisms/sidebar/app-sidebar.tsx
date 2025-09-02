@@ -34,6 +34,7 @@ import {
 } from "lucide-react";
 import { NavUser } from "./NavUser";
 import { useGetCheckPersonalInformation } from "@/http/personal-information/get-check-personal-information";
+import { motion } from "framer-motion";
 
 interface AppSidebarProps {
   session: Session;
@@ -67,21 +68,25 @@ export function AppSidebar({ session }: AppSidebarProps) {
       {/* Header */}
       <SidebarHeader className="h-14 cursor-default justify-center border-b bg-white dark:bg-slate-950">
         <SidebarMenu>
-          <SidebarMenuItem>
-            <div className="ml-2 flex items-center gap-x-3">
-              <Link href="/dashboard" className="flex items-center gap-2">
-                <Image
-                  src={"/images/assets/bg-about-us.png"}
-                  alt="Dialisis Connect"
-                  width={60}
-                  height={60}
-                />
-                <h1 className="font-semibold tracking-tight">
-                  Dialisis Connect Edu
-                </h1>
-              </Link>
-            </div>
-          </SidebarMenuItem>
+<SidebarMenuItem>
+  <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.25 }}>
+    <Link href="/dashboard" className="group flex items-center gap-2">
+      {/* Logo */}
+      <Image
+        src="/images/assets/bg-about-us.png"
+        alt="Dialisis Connect Edu"
+        width={40}
+        height={40}
+        className="h-10 w-10 object-contain md:h-12 md:w-12"
+      />
+
+      {/* Text */}
+      <span className="group-hover:from-primary group-hover:to-secondary text-lg font-bold tracking-tight text-black transition-all group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:text-transparent">
+        Dialisis Connect Edu
+      </span>
+    </Link>
+  </motion.div>
+</SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
 
