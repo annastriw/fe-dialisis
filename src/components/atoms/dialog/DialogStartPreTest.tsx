@@ -41,7 +41,7 @@ export default function DialogStartPreTest({
                 mengulang kembali dari awal.
               </li>
               <li>
-                Setelah menekan tombol <strong>"Selesai untuk Dinilai"</strong>, 
+                Setelah menekan tombol <strong>{`"Selesai untuk Dinilai"`}</strong>,
                 jawaban akan langsung diproses dan tidak bisa diubah lagi.
               </li>
               <li>

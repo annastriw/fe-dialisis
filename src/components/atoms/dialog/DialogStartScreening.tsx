@@ -47,8 +47,7 @@ export default function DialogStartScreening({
               Tidak ada jawaban benar atau salah — isi sesuai dengan kondisi Anda secara jujur.
             </li>
             <li>
-              Setelah Anda memilih <strong>“Selesai & Kumpulkan”</strong>, 
-              screening dianggap tuntas.
+              Setelah Anda memilih <strong>{`"Selesai & Kumpulkan"`}</strong>, screening dianggap tuntas.
             </li>
           </ul>
         </div>

@@ -6,7 +6,7 @@ import { useDeleteDiscussionMessage } from "@/http/discussions/get-delete-discus
 import { DiscussionComment } from "@/types/discussions/discussion";
 import { formatRelativeTime } from "@/utils/time-relative";
 import { useQueryClient } from "@tanstack/react-query";
-import { Eye, Globe, Lock, SquarePen, Trash2 } from "lucide-react";
+import { Eye, Globe, Lock, MessageSquare, SquarePen, Trash2 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
@@ -26,7 +26,6 @@ export default function CardDiscussionYourQuestion({
   const [openAlertDelete, setOpenAlertDelete] = useState(false);
 
   const queryClient = useQueryClient();
-
   const { data: session } = useSession();
 
   const { mutate: deleteDiscussion, isPending: isDeletePending } =
@@ -56,14 +55,14 @@ export default function CardDiscussionYourQuestion({
     }
   };
 
+  // Loading skeleton
   if (isLoading) {
     return (
       <div className="flex flex-col gap-6">
         {[...Array(3)].map((_, i) => (
           <Card className="shadow-none" key={i}>
             <CardContent className="space-y-4">
-              <Skeleton className="h-6 w-20 rounded-full" />{" "}
-              {/* Simulasi Badge */}
+              <Skeleton className="h-6 w-20 rounded-full" /> {/* Simulasi Badge */}
               <Skeleton className="h-4 w-3/4" /> {/* Komentar */}
             </CardContent>
             <CardFooter>
@@ -75,6 +74,20 @@ export default function CardDiscussionYourQuestion({
     );
   }
 
+  // Empty state
+  if (!data || data.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center py-16 text-center text-muted-foreground">
+        <MessageSquare className="h-10 w-10 mb-3 text-gray-400" />
+        <p className="text-lg font-medium">Belum ada pertanyaan</p>
+        <p className="text-sm">
+          Anda belum pernah mengirim pertanyaan. Silakan mulai dengan membuat pertanyaan baru.
+        </p>
+      </div>
+    );
+  }
+
+  // Main content
   return (
     <div className="flex flex-col gap-6">
       {data.map((comment) => (
@@ -82,7 +95,7 @@ export default function CardDiscussionYourQuestion({
           <CardContent className="space-y-4">
             <div className="flex justify-between">
               <Badge
-                variant={"outline"}
+                variant="outline"
                 className={
                   comment.is_private === "1" ? "text-red-500" : "text-green-500"
                 }
