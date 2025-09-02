@@ -24,35 +24,39 @@ export default function DialogStartPreTest({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Kerjakan Pre Test?</DialogTitle>
+          <DialogTitle>Siap untuk Memulai Pre Test?</DialogTitle>
         </DialogHeader>
         <ScrollArea className="h-72 pr-4">
           <div className="text-muted-foreground space-y-2 text-sm">
             <p>
-              Pastikan anda memahami hal berikut sebelum mengerjakan pre test:
+              Sebelum Anda memulai pre test, mohon perhatikan beberapa hal penting berikut:
             </p>
             <ol className="ml-5 list-outside list-decimal space-y-1">
-              <li>Pastikan koneksi internet anda stabil.</li>
+              <li>Pastikan perangkat dan koneksi internet Anda dalam kondisi stabil.</li>
               <li>
-                Anda hanya memiliki 1 (satu) kali kesempatan mengerjakan pre
-                test.
+                Pre test hanya dapat dikerjakan <strong>1 (satu) kali kesempatan</strong>.
               </li>
               <li>
-                Jika koneksi internet anda terputus, anda harus mengulang pre
-                test dari awal.
+                Jika terjadi gangguan (misalnya koneksi terputus), Anda perlu 
+                mengulang kembali dari awal.
               </li>
               <li>
-                Setelah anda memilih &quot;Selesai untuk Dinilai&quot;, pre test
-                dianggap selesai dan tidak dapat diulang. Anda akan mendapat
-                penilaian dan jawaban benar.
+                Setelah menekan tombol <strong>"Selesai untuk Dinilai"</strong>, 
+                jawaban akan langsung diproses dan tidak bisa diubah lagi.
               </li>
-              <li>Jawaban dapat anda lihat setelah selesai mengerjakan.</li>
+              <li>
+                Hasil penilaian dan kunci jawaban dapat Anda lihat setelah selesai mengerjakan.
+              </li>
             </ol>
+            <p className="pt-2">
+              Pre test ini dirancang untuk membantu memahami kemampuan awal Anda. 
+              Silakan kerjakan dengan tenang dan percaya diri.
+            </p>
           </div>
         </ScrollArea>
-        <DialogFooter>
-          <Link href={`/work/pre-test/${id}`}>
-            <Button>Kerjakan Sekarang</Button>
+        <DialogFooter className="sm:justify-end">
+          <Link href={`/work/pre-test/${id}`} className="w-full sm:w-auto">
+            <Button className="w-full sm:w-auto">Mulai Pre Test</Button>
           </Link>
         </DialogFooter>
       </DialogContent>

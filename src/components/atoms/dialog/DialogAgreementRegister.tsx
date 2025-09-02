@@ -34,19 +34,23 @@ export default function DialogAgreementRegister({
         <ScrollArea className="h-72">
           <div className="text-muted-foreground space-y-3 text-sm">
             <div>
-              Dengan ini saya menyatakan bahwa saya setuju untuk ikut
-              berpartisipasi dalam penelitian berbasis website ini
-              &quot;Dialisis Connect Edu&quot; dengan penuh kesadaran dan tanpa
-              ada paksaan dari siapapun dengan kondisi:
+              Dengan ini saya menyatakan bahwa saya bersedia berpartisipasi dalam
+              program berbasis website <strong>Dialisis Connect Edu</strong> dengan
+              penuh kesadaran dan tanpa paksaan dari pihak mana pun, dengan
+              ketentuan sebagai berikut:
             </div>
             <ol className="ml-4 list-decimal space-y-1">
               <li>
-                Data yang didapatkan dari penelitian ini akan dijaga
-                kerahasiaannya dan hanya digunakan untuk kepentingan ilmiah.
+                Data yang saya berikan, termasuk data penggunaan akun di website ini,
+                akan digunakan untuk mendukung kegiatan penelitian dan pengembangan
+                ilmiah. Seluruh data akan dijaga kerahasiaannya serta tidak akan
+                dipublikasikan secara individual.
               </li>
               <li>
-                Saya berhak untuk mengundurkan diri dari penelitian ini kapan
-                saja tanpa perlu memberikan alasan apa pun.
+                Saya berhak mengundurkan diri dari program atau penelitian ini kapan
+                saja tanpa perlu memberikan alasan apa pun, dan keputusan tersebut
+                tidak akan memengaruhi akses saya terhadap layanan edukasi yang
+                tersedia.
               </li>
             </ol>
             <div className="flex items-center space-x-2 pt-2">

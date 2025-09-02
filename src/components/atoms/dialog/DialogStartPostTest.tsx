@@ -24,37 +24,41 @@ export default function DialogStartPostTest({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Kerjakan Post Test?</DialogTitle>
+          <DialogTitle>Siap Mengerjakan Post Test?</DialogTitle>
         </DialogHeader>
 
         <ScrollArea className="h-72 pr-4">
-          <div className="text-muted-foreground space-y-2 text-sm">
+          <div className="text-muted-foreground space-y-3 text-sm">
             <p>
-              Pastikan anda memahami hal berikut sebelum mengerjakan post test:
+              Sebelum mulai, mohon perhatikan beberapa hal penting berikut agar
+              pengalaman mengerjakan post test lebih lancar:
             </p>
-            <ol className="ml-5 list-outside list-decimal space-y-1">
-              <li>Pastikan koneksi internet anda stabil.</li>
+            <ol className="ml-5 list-outside list-decimal space-y-2">
+              <li>Pastikan koneksi internet Anda stabil.</li>
               <li>
-                Anda hanya memiliki 1 (satu) kali kesempatan mengerjakan post
-                test.
+                Post test hanya dapat dikerjakan <strong>1 (satu) kali</strong>.
               </li>
               <li>
-                Jika koneksi internet anda terputus, anda harus mengulang post
-                test dari awal.
+                Jika koneksi terputus, Anda perlu mengulang dari awal.
               </li>
               <li>
-                Setelah anda memilih &quot;Selesai untuk Dinilai&quot;, post
-                test dianggap selesai dan tidak dapat diulang. Anda akan
-                mendapat penilaian dan jawaban benar.
+                Setelah menekan <strong>Selesai untuk Dinilai</strong>, jawaban
+                tidak dapat diubah atau diulang.
               </li>
-              <li>Jawaban dapat anda lihat setelah selesai mengerjakan.</li>
+              <li>
+                Hasil penilaian dan kunci jawaban akan ditampilkan setelah Anda
+                selesai.
+              </li>
             </ol>
+            <p className="pt-2">
+              Silakan kerjakan dengan tenang dan semoga sukses!
+            </p>
           </div>
         </ScrollArea>
 
         <DialogFooter>
           <Link href={`/work/post-test/${id}`}>
-            <Button>Kerjakan Sekarang</Button>
+            <Button className="w-full sm:w-auto">Kerjakan Sekarang</Button>
           </Link>
         </DialogFooter>
       </DialogContent>
