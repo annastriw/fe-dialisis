@@ -120,7 +120,7 @@ export default function DashboardModulesBookletWrapper({
           >
             <div>
               <Link
-                href={`${BASE_URL}/public/public/${data?.data?.file_path}`}
+                href={`${BASE_URL}/public/storage/${data?.data?.file_path}`}
                 target="_blank"
                 className="block w-full md:w-auto"
               >
@@ -149,7 +149,7 @@ export default function DashboardModulesBookletWrapper({
               ) : (
                 <motion.iframe
                   key="pdf-loaded"
-                  src={`https://docs.google.com/gview?url=${BASE_URL}/public/public/${data?.data?.file_path}&embedded=true`}
+                  src={`https://docs.google.com/gview?url=${BASE_URL}/public/storage/${data?.data?.file_path}&embedded=true`}
                   className="h-[500px] w-full rounded-lg border md:h-[800px]"
                   loading="lazy"
                   initial={{ opacity: 0 }}
