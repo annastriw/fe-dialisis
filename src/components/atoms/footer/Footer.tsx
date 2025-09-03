@@ -2,8 +2,32 @@
 
 import { Instagram, Youtube, Mail } from "lucide-react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Footer() {
+  const socialIcons = [
+    {
+      icon: <Mail className="h-5 w-5 text-white" />,
+      href: "mailto:dialisisconnectedudev@gmail.com",
+      label: "Email",
+    },
+    {
+      icon: <Instagram className="h-5 w-5 text-white" />,
+      href: "https://www.instagram.com/nursing_undip/",
+      label: "@nursing_undip",
+    },
+    {
+      icon: <Instagram className="h-5 w-5 text-white" />,
+      href: "https://www.instagram.com/tekom_undip/",
+      label: "@tekom_undip",
+    },
+    {
+      icon: <Youtube className="h-5 w-5 text-white" />,
+      href: "https://www.youtube.com/@nursing_undip",
+      label: "YouTube",
+    },
+  ];
+
   return (
     <footer className="relative mt-20 w-full bg-footer-pattern bg-cover bg-center bg-no-repeat text-white">
       {/* Overlay biru muda semi-transparan */}
@@ -31,30 +55,25 @@ export default function Footer() {
           <div className="space-y-3">
             <h2 className="text-lg font-semibold sm:text-xl">Kontak & Media Sosial</h2>
             <ul className="space-y-3 text-sm sm:text-base">
-              <li className="flex items-center gap-2">
-                <Mail className="h-5 w-5 text-white" />
-                <a href="mailto:dialisisconnectedudev@gmail.com" className="hover:underline">
-                  dialisisconnectedudev@gmail.com
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Instagram className="h-5 w-5 text-white" />
-                <a href="https://www.instagram.com/nursing_undip/" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                  @nursing_undip
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Instagram className="h-5 w-5 text-white" />
-                <a href="https://www.instagram.com/tekom_undip/" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                  @tekom_undip
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Youtube className="h-5 w-5 text-white" />
-                <a href="https://www.youtube.com/@nursing_undip" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                  Nursing Undip
-                </a>
-              </li>
+              {socialIcons.map((item, idx) => (
+                <motion.li
+                  key={idx}
+                  className="flex items-center gap-2 cursor-pointer"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  {item.icon}
+                  <a
+                    href={item.href}
+                    target={item.href.startsWith("http") ? "_blank" : undefined}
+                    rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="hover:underline"
+                  >
+                    {item.label}
+                  </a>
+                </motion.li>
+              ))}
             </ul>
           </div>
 
@@ -74,7 +93,13 @@ export default function Footer() {
           transition={{ delay: 0.4, duration: 0.5 }}
           className="mt-10 border-t border-white/30 pt-5 text-center text-xs text-white/70 sm:text-sm"
         >
-          Dibuat oleh <span className="text-white">Departemen Ilmu Keperawatan & Teknik Komputer UNDIP 💻</span>
+          Dibuat oleh{" "}
+          <Link
+            href="/about-us"
+            className="text-white hover:underline hover:text-blue-200 transition-colors"
+          >
+            Departemen Ilmu Keperawatan & Teknik Komputer UNDIP 💻
+          </Link>
         </motion.div>
       </motion.div>
     </footer>
