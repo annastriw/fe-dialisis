@@ -10,9 +10,7 @@ export default function DashboardMedicalDiscussionPrivateWrapper() {
 
   const { data, isLoading } = useGetAllDiscussionPrivate(
     session?.access_token as string,
-    {
-      enabled: status === "authenticated",
-    }
+    { enabled: status === "authenticated" }
   );
 
   const discussions = data?.data ?? [];
@@ -27,7 +25,7 @@ export default function DashboardMedicalDiscussionPrivateWrapper() {
 
   if (discussions.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center h-40 text-center space-y-2">
+      <div className="flex flex-col items-center justify-center h-40 text-center space-y-2 px-4">
         <MessageSquareText className="w-10 h-10 text-muted-foreground" />
         <p className="text-sm text-muted-foreground">
           Belum ada diskusi pribadi.
@@ -37,7 +35,7 @@ export default function DashboardMedicalDiscussionPrivateWrapper() {
   }
 
   return (
-    <div>
+    <div className="px-4 sm:px-6 lg:px-12 max-w-6xl mx-auto space-y-4">
       <CardListDiscussionCommentPrivate data={discussions} />
     </div>
   );
