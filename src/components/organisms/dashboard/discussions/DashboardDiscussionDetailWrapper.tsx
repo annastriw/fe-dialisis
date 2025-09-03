@@ -19,23 +19,20 @@ export default function DashboardDiscussionDetailWrapper({
   const { data, isPending } = useGetDetailDiscussion(
     id,
     session?.access_token as string,
-    {
-      enabled: status === "authenticated",
-    },
+    { enabled: status === "authenticated" }
   );
 
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredComments = useMemo(() => {
     if (!data?.data?.comments) return [];
-
     return data.data.comments.filter((comment) =>
-      comment.comment.toLowerCase().includes(searchTerm.toLowerCase()),
+      comment.comment.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [data?.data?.comments, searchTerm]);
 
   return (
-    <section>
+    <section className="px-4 sm:px-6 lg:px-8 py-6 max-w-7xl mx-auto">
       <DashboardTitleBold head={`# ${data?.data.title ?? ""}`} />
       <MessageDiscussion id={id} />
       <div className="space-y-4 md:space-y-6">

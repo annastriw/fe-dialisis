@@ -4,32 +4,16 @@ import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowUp, FileImage, Paperclip, X } from "lucide-react";
 import { useForm } from "react-hook-form";
-import {
-  discussionMessageSchema,
-  DiscussionMessageType,
-} from "@/validators/discussion/discussion-message-validator";
+import { discussionMessageSchema, DiscussionMessageType } from "@/validators/discussion/discussion-message-validator";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAddNewDiscussionMesagge } from "@/http/discussions/create-discussion-message";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 import { useSession } from "next-auth/react";
 import { useGetAllMedicalPersonalUsers } from "@/http/users/get-medical-personal-users";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 
 interface MessageDiscussionProps {
@@ -38,12 +22,7 @@ interface MessageDiscussionProps {
 
 export default function MessageDiscussion({ id }: MessageDiscussionProps) {
   const { data: session, status } = useSession();
-  const { data } = useGetAllMedicalPersonalUsers(
-    session?.access_token as string,
-    {
-      enabled: status === "authenticated",
-    },
-  );
+  const { data } = useGetAllMedicalPersonalUsers(session?.access_token as string, { enabled: status === "authenticated" });
 
   const form = useForm<DiscussionMessageType>({
     resolver: zodResolver(discussionMessageSchema),
@@ -59,6 +38,7 @@ export default function MessageDiscussion({ id }: MessageDiscussionProps) {
 
   const [fileName, setFileName] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const queryClient = useQueryClient();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -68,31 +48,20 @@ export default function MessageDiscussion({ id }: MessageDiscussionProps) {
     }
   };
 
-  const handleClickPaperclip = () => {
-    fileInputRef.current?.click();
-  };
-  const queryClient = useQueryClient();
+  const handleClickPaperclip = () => fileInputRef.current?.click();
 
   const { mutate: addHDHandler, isPending } = useAddNewDiscussionMesagge({
-    onError: () => {
-      toast.error("Gagal mengirim pesan!");
-    },
+    onError: () => toast.error("Gagal mengirim pesan!"),
     onSuccess: () => {
       toast.success("Berhasil mengirim pesan!");
-      queryClient.invalidateQueries({
-        queryKey: ["discussion-detail"],
-      });
+      queryClient.invalidateQueries({ queryKey: ["discussion-detail"] });
       form.reset();
       setFileName(null);
     },
   });
 
   const onSubmit = (body: DiscussionMessageType) => {
-    const payload = {
-      ...body,
-      medical_id: body.is_private ? body.medical_id : null,
-    };
-
+    const payload = { ...body, medical_id: body.is_private ? body.medical_id : null };
     addHDHandler(payload);
   };
 
@@ -101,8 +70,9 @@ export default function MessageDiscussion({ id }: MessageDiscussionProps) {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-y-2 rounded-xl border p-4"
+          className="relative flex flex-col p-4 rounded-xl border bg-white gap-3"
         >
+          {/* File Preview */}
           {fileName && (
             <div className="bg-primary/10 flex items-center justify-between gap-x-2 rounded-md border p-2 text-sm text-gray-600">
               <div className="flex items-center gap-x-2">
@@ -121,15 +91,16 @@ export default function MessageDiscussion({ id }: MessageDiscussionProps) {
             </div>
           )}
 
+          {/* Textarea */}
           <FormField
             control={form.control}
             name="comment"
             render={({ field }) => (
-              <FormItem className="flex-grow">
+              <FormItem className="w-full">
                 <FormControl>
                   <Textarea
-                    placeholder="Tulis pesan untuk disuksi disini..."
-                    className="resize-none border-0 p-0 shadow-none"
+                    placeholder="Tulis pesan untuk diskusi..."
+                    className="resize-none border-0 p-2 shadow-none w-full min-h-[100px]"
                     rows={1}
                     {...field}
                   />
@@ -139,8 +110,12 @@ export default function MessageDiscussion({ id }: MessageDiscussionProps) {
             )}
           />
 
-          <div className="flex items-end justify-between">
-            <div className="flex flex-col gap-y-4">
+          {/* Bottom Actions */}
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-3 w-full">
+            
+            {/* Left: Checkbox + Dropdown */}
+            <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto">
+              {/* Checkbox Private */}
               <FormField
                 control={form.control}
                 name="is_private"
@@ -152,20 +127,19 @@ export default function MessageDiscussion({ id }: MessageDiscussionProps) {
                         onCheckedChange={(checked) => field.onChange(!!checked)}
                       />
                     </FormControl>
-                    <div className="text-muted-foreground text-sm">
-                      Private (hanya ke Dokter / Tenaga Medis)
-                    </div>
+                    <span className="text-sm text-muted-foreground">Private</span>
                   </FormItem>
                 )}
               />
 
+              {/* Dropdown Medical */}
               {form.watch("is_private") && (
                 <FormField
                   control={form.control}
                   name="medical_id"
                   render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Pilih dokter / tenaga medis</FormLabel>
+                    <FormItem className="w-full md:w-auto min-w-[200px]">
+                      <FormLabel className="text-sm mb-1">Pilih dokter / tenaga medis</FormLabel>
                       <Select
                         value={field.value ?? ""}
                         onValueChange={(value) => field.onChange(value || null)}
@@ -175,7 +149,7 @@ export default function MessageDiscussion({ id }: MessageDiscussionProps) {
                             <SelectValue placeholder="Pilih Medical Personal" />
                           </SelectTrigger>
                         </FormControl>
-                        <SelectContent>
+                        <SelectContent className="max-h-60">
                           {data?.data.map((user) => (
                             <SelectItem key={user.id} value={user.id}>
                               {user.name}
@@ -190,22 +164,27 @@ export default function MessageDiscussion({ id }: MessageDiscussionProps) {
               )}
             </div>
 
-            <div className="flex w-full items-center justify-end gap-x-2">
-              <button type="button" onClick={handleClickPaperclip}>
-                <Paperclip className="text-muted-foreground h-6 w-6 cursor-pointer" />
+            {/* Right: Buttons tetap di pojok kanan bawah */}
+            <div className="flex items-center gap-x-2 mt-2 md:mt-0 ml-auto">
+              <button
+                type="button"
+                onClick={handleClickPaperclip}
+                className="text-muted-foreground"
+              >
+                <Paperclip className="h-6 w-6 cursor-pointer" />
               </button>
-
               <Button
                 type="submit"
                 disabled={isPending}
+                size="icon"
                 className="rounded-full"
-                size={"icon"}
               >
                 <ArrowUp className="h-8 w-8" />
               </Button>
             </div>
           </div>
 
+          {/* Hidden file input */}
           <input
             type="file"
             ref={fileInputRef}

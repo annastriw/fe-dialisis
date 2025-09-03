@@ -87,7 +87,7 @@ export default function CardListTopicDiscussion({
                       </div>
                     )}
                     <p className="text-muted-foreground text-sm">
-                      {discussion.comments.length} Balasan
+                      {discussion.comments.length} Pertanyaan
                     </p>
                     {discussion.comments.length > 0 && (
                       <span className="text-muted-foreground hidden text-xs md:flex">
@@ -96,7 +96,7 @@ export default function CardListTopicDiscussion({
                     )}
                     {discussion.comments.length > 0 && (
                       <p className="text-muted-foreground hidden text-sm md:flex">
-                        Balasan terakhir{" "}
+                        Pertanyaan terakhir{" "}
                         {formatRelativeTime(discussion.comments[0].created_at)}
                       </p>
                     )}
