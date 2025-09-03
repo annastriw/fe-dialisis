@@ -25,7 +25,7 @@ export default function CardListDiscussionCommentAnswer({ data, id, isLoading }:
     return (
       <div className="space-y-6">
         {[...Array(3)].map((_, i) => (
-          <div key={i} className="flex w-full gap-3">
+          <div key={i} className="flex flex-col sm:flex-row gap-3 w-full">
             <Skeleton className="h-10 w-10 rounded-full" />
             <div className="flex-1 space-y-2">
               <Skeleton className="h-4 w-32" />
@@ -40,7 +40,7 @@ export default function CardListDiscussionCommentAnswer({ data, id, isLoading }:
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
         <h1 className="text-xl font-semibold">Balasan</h1>
         <Button onClick={() => setShowReplyForm((prev) => !prev)}>
           {showReplyForm ? "Tutup" : "Beri Balasan"}
@@ -57,16 +57,16 @@ export default function CardListDiscussionCommentAnswer({ data, id, isLoading }:
           </div>
         ) : (
           data.map((comment) => (
-            <div key={comment.id} className="flex gap-3">
-              <Avatar className="h-10 w-10 rounded-full">
+            <div key={comment.id} className="flex flex-col sm:flex-row gap-3">
+              <Avatar className="h-10 w-10 rounded-full flex-shrink-0">
                 <AvatarFallback className={`${getAvatarColor(comment.user.id)} rounded-full text-xs font-semibold text-white`}>
                   {generateFallbackFromName(comment.user.name)}
                 </AvatarFallback>
               </Avatar>
               <div className="flex-1 space-y-2">
                 <Card className="bg-muted w-full border-0 p-2 shadow-none">
-                  <CardContent className="px-3 py-2">
-                    <div className="flex justify-between items-center">
+                  <CardContent className="px-3 py-2 space-y-2">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                       <h1 className="font-semibold">{comment.user.name}</h1>
                       <p className="text-muted-foreground text-sm">{formatRelativeTime(comment.created_at)}</p>
                     </div>

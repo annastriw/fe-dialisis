@@ -2,22 +2,13 @@
 
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowUp, FileImage, Paperclip, X } from "lucide-react";
+import { ArrowUp, Paperclip, FileImage, X } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  discussionMessageAnswerSchema,
-  DiscussionMessageAnswerType,
-} from "@/validators/discussion/discussion-message-answer-validator";
+import { discussionMessageAnswerSchema, DiscussionMessageAnswerType } from "@/validators/discussion/discussion-message-answer-validator";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAddNewDiscussionMessageAnswer } from "@/http/discussions/answer/create-discussion-message-answer";
 
@@ -28,11 +19,7 @@ interface MessageDiscussionAnswerProps {
 export default function MessageDiscussionAnswer({ id }: MessageDiscussionAnswerProps) {
   const form = useForm<DiscussionMessageAnswerType>({
     resolver: zodResolver(discussionMessageAnswerSchema),
-    defaultValues: {
-      discussion_comment_id: id,
-      image: undefined,
-      comment: "",
-    },
+    defaultValues: { discussion_comment_id: id, image: undefined, comment: "" },
     mode: "onChange",
   });
 
@@ -40,8 +27,8 @@ export default function MessageDiscussionAnswer({ id }: MessageDiscussionAnswerP
   const fileInputRef = useRef<HTMLInputElement>(null);
   const queryClient = useQueryClient();
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
     if (file) {
       setFileName(file.name);
       form.setValue("image", file);
@@ -60,72 +47,49 @@ export default function MessageDiscussionAnswer({ id }: MessageDiscussionAnswerP
     },
   });
 
-  const onSubmit = (body: DiscussionMessageAnswerType) => {
-    addHDHandler(body);
-  };
+  const onSubmit = (body: DiscussionMessageAnswerType) => addHDHandler(body);
 
   return (
-    <div className="w-full">
+    <div className="w-full relative">
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="relative flex flex-col gap-2 rounded-xl border p-4 bg-white"
-        >
-          {/* Preview File */}
+        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-2 p-4 rounded-xl border bg-white relative">
+          
           {fileName && (
             <div className="bg-primary/10 flex items-center justify-between gap-x-2 rounded-md border p-2 text-sm text-gray-600 mb-2">
               <div className="flex items-center gap-x-2">
                 <FileImage className="h-5 w-5" />
                 {fileName}
               </div>
-              <button
-                type="button"
-                onClick={() => {
-                  setFileName(null);
-                  form.setValue("image", undefined);
-                }}
-              >
+              <button type="button" onClick={() => { setFileName(null); form.setValue("image", undefined); }}>
                 <X className="text-muted-foreground h-4 w-4 cursor-pointer" />
               </button>
             </div>
           )}
 
-          {/* Textarea */}
-          <FormField
-            control={form.control}
-            name="comment"
-            render={({ field }) => (
-              <FormItem className="flex-grow w-full">
-                <FormControl>
-                  <Textarea
-                    placeholder="Tulis balasan disini..."
-                    className="resize-none border-0 p-2 shadow-none w-full min-h-[60px] md:min-h-[80px]"
-                    rows={1}
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <FormField control={form.control} name="comment" render={({ field }) => (
+            <FormItem className="flex-grow w-full">
+              <FormControl>
+                <Textarea
+                  placeholder="Tulis balasan disini..."
+                  className="resize-none border-0 p-2 shadow-none w-full min-h-[60px] md:min-h-[80px]"
+                  rows={1}
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )} />
 
-          {/* Bottom-right actions */}
           <div className="absolute right-4 bottom-4 flex items-center gap-2">
             <button type="button" onClick={handleClickPaperclip}>
-              <Paperclip className="text-muted-foreground h-6 w-6 cursor-pointer" />
+              <Paperclip className="h-6 w-6 cursor-pointer text-muted-foreground" />
             </button>
             <Button type="submit" disabled={isPending} size="icon" className="rounded-full">
               <ArrowUp className="h-8 w-8" />
             </Button>
           </div>
 
-          {/* Hidden file input */}
-          <input
-            type="file"
-            ref={fileInputRef}
-            onChange={handleFileChange}
-            className="hidden"
-          />
+          <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" />
         </form>
       </Form>
     </div>

@@ -38,7 +38,7 @@ export default function CardDetaillDiscussionComment({ data, isLoading }: CardDe
     <Card className="shadow-none">
       <CardContent>
         <div className="space-y-4">
-          <div className="flex items-start justify-between">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <div className="flex items-center gap-3">
               <Avatar className="h-10 w-10 rounded-full">
                 <AvatarFallback className={`${getAvatarColor(data.user.id)} rounded-full text-xs font-semibold text-white`}>
