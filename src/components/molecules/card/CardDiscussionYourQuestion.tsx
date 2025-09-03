@@ -6,11 +6,12 @@ import { useDeleteDiscussionMessage } from "@/http/discussions/get-delete-discus
 import { DiscussionComment } from "@/types/discussions/discussion";
 import { formatRelativeTime } from "@/utils/time-relative";
 import { useQueryClient } from "@tanstack/react-query";
-import { Eye, Globe, Lock, MessageSquare, SquarePen, Trash2 } from "lucide-react";
+import { Eye, Globe, Lock, MessageSquare, Trash2 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 interface CardDiscussionYourQuestionProps {
   data: DiscussionComment[];
@@ -27,6 +28,7 @@ export default function CardDiscussionYourQuestion({
 
   const queryClient = useQueryClient();
   const { data: session } = useSession();
+  const router = useRouter();
 
   const { mutate: deleteDiscussion, isPending: isDeletePending } =
     useDeleteDiscussionMessage({
@@ -53,6 +55,10 @@ export default function CardDiscussionYourQuestion({
         token: session?.access_token || "",
       });
     }
+  };
+
+  const handleCardClick = (id: string) => {
+    router.push(`/dashboard/discussions/${id}/answers`);
   };
 
   // Loading skeleton
@@ -91,9 +97,13 @@ export default function CardDiscussionYourQuestion({
   return (
     <div className="flex flex-col gap-6">
       {data.map((comment) => (
-        <Card className="shadow-none" key={comment.id}>
+        <Card
+          className="shadow-none cursor-pointer hover:bg-gray-50 transition"
+          key={comment.id}
+          onClick={() => handleCardClick(comment.id)}
+        >
           <CardContent className="space-y-4">
-            <div className="flex justify-between">
+            <div className="flex justify-between items-start">
               <Badge
                 variant="outline"
                 className={
@@ -104,6 +114,9 @@ export default function CardDiscussionYourQuestion({
                   <>
                     <Lock size={14} className="mr-1" />
                     Privasi
+                    {comment.medical?.name
+                      ? ` ke ${comment.medical.name}`
+                      : ""}
                   </>
                 ) : (
                   <>
@@ -116,21 +129,15 @@ export default function CardDiscussionYourQuestion({
               <div className="flex items-center gap-4">
                 <Link
                   href={`/dashboard/discussions/${comment.id}/answers`}
+                  onClick={(e) => e.stopPropagation()}
                   className="flex items-center text-sm text-gray-700 hover:underline"
                 >
                   <Eye className="h-4 w-4" />
                   <span className="ml-2">Detail</span>
                 </Link>
-                <Link
-                  href={`/dashboard/discussions/your-question/${comment.id}/edit`}
-                  className="flex items-center text-sm text-yellow-700 hover:underline"
-                >
-                  <SquarePen className="h-4 w-4" />
-                  <span className="ml-2">Edit</span>
-                </Link>
                 <div
                   onClick={(e) => {
-                    e.preventDefault();
+                    e.stopPropagation();
                     handleDeleteClick(comment);
                   }}
                   className="flex cursor-pointer items-center text-sm text-red-700 hover:underline"

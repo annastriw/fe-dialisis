@@ -28,7 +28,7 @@ export const useGetDiscussionMessageYourQuestion = (
     UseQueryOptions<GetDiscussionMessageYourQuestionResponse, AxiosError>
   >,
 ) => {
-  return useQuery({
+  return useQuery<GetDiscussionMessageYourQuestionResponse, AxiosError>({
     queryKey: ["discussion-your-question"],
     queryFn: () => GetDiscussionMessageYourQuestionHandler(token),
     ...options,
