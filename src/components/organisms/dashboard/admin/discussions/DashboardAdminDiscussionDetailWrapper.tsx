@@ -23,14 +23,11 @@ export default function DashboardAdminDetailDiscussionWrapper({
   const { data, isPending } = useGetDetailDiscussionAdmin(
     id,
     session?.access_token as string,
-    {
-      enabled: status === "authenticated",
-    },
+    { enabled: status === "authenticated" }
   );
 
   const [selectedDiscussionComment, setSelectedDiscussionComment] =
     useState<DiscussionComment | null>(null);
-
   const [openAlertDelete, setOpenAlertDelete] = useState<boolean>(false);
 
   const deleteDiscussionCommentHandler = (data: DiscussionComment) => {
@@ -39,18 +36,12 @@ export default function DashboardAdminDetailDiscussionWrapper({
   };
 
   const queryClient = useQueryClient();
-
   const { mutate: deleteDiscussionComment } = useDeleteDiscussionComment({
-    onError: () => {
-      toast.error("Gagal menghapus pesan diskusi!");
-    },
+    onError: () => toast.error("Gagal menghapus pesan diskusi!"),
     onSuccess: () => {
       setSelectedDiscussionComment(null);
       toast.success("Berhasil menghapus pesan diskusi!");
-
-      queryClient.invalidateQueries({
-        queryKey: ["discussion-detail-admin"],
-      });
+      queryClient.invalidateQueries({ queryKey: ["discussion-detail-admin"] });
     },
   });
 
@@ -64,10 +55,10 @@ export default function DashboardAdminDetailDiscussionWrapper({
   };
 
   return (
-    <div>
+    <div className="px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-6">
       <DashboardTitle
         head={data?.data.title ?? ""}
-        body="Menampilkan detail topik disuksi beserta list diskusi dari topik"
+        body="Menampilkan daftar pertanyaan pada topik ini"
       />
       <MessageDiscussion id={id} />
       <CardListDiscussionCommentAdmin
