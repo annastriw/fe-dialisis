@@ -13,10 +13,7 @@ interface CardDetaillDiscussionCommentProps {
   isLoading: boolean;
 }
 
-export default function CardDetaillDiscussionComment({
-  data,
-  isLoading,
-}: CardDetaillDiscussionCommentProps) {
+export default function CardDetaillDiscussionComment({ data, isLoading }: CardDetaillDiscussionCommentProps) {
   if (isLoading || !data) {
     return (
       <Card className="shadow-none">
@@ -41,22 +38,16 @@ export default function CardDetaillDiscussionComment({
     <Card className="shadow-none">
       <CardContent>
         <div className="space-y-4">
-          <div className="flex justify-between">
-            <div className="flex items-center gap-2">
+          <div className="flex items-start justify-between">
+            <div className="flex items-center gap-3">
               <Avatar className="h-10 w-10 rounded-full">
-                <AvatarFallback
-                  className={`${getAvatarColor(
-                    data.user.id,
-                  )} rounded-full text-xs font-semibold text-white`}
-                >
+                <AvatarFallback className={`${getAvatarColor(data.user.id)} rounded-full text-xs font-semibold text-white`}>
                   {generateFallbackFromName(data.user.name)}
                 </AvatarFallback>
               </Avatar>
-              <div>
-                <h1>{data.user.name}</h1>
-                <p className="text-muted-foreground text-sm">
-                  {formatRelativeTime(data.created_at)}
-                </p>
+              <div className="flex flex-col">
+                <h1 className="font-semibold">{data.user.name}</h1>
+                <p className="text-muted-foreground text-sm">{formatRelativeTime(data.created_at)}</p>
               </div>
             </div>
           </div>
@@ -67,10 +58,11 @@ export default function CardDetaillDiscussionComment({
               alt="Foto"
               width={1000}
               height={1000}
-              className="rounded-xl md:max-w-2xl"
+              className="rounded-xl md:max-w-2xl w-full object-cover"
             />
           )}
-          <h1>{data.comment}</h1>
+
+          <p className="break-words">{data.comment}</p>
         </div>
       </CardContent>
     </Card>

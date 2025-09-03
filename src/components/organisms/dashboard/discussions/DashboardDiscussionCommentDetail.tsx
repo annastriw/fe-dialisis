@@ -10,21 +10,21 @@ interface DashboardDiscussionCommentDetailProps {
   id: string;
 }
 
-export default function DashboardDiscussionCommentDetail({
-  id,
-}: DashboardDiscussionCommentDetailProps) {
+export default function DashboardDiscussionCommentDetail({ id }: DashboardDiscussionCommentDetailProps) {
   const { data: session, status } = useSession();
+
   const { data, isPending } = useGetDetailDiscussionComment(
     id,
     session?.access_token as string,
-    {
-      enabled: status === "authenticated",
-    },
+    { enabled: status === "authenticated" }
   );
-  const { data: answer, isPending: answerIsPending } =
-    useGetDetailDiscussionCommentAnswer(id, session?.access_token as string, {
-      enabled: status === "authenticated",
-    });
+
+  const { data: answer, isPending: answerIsPending } = useGetDetailDiscussionCommentAnswer(
+    id,
+    session?.access_token as string,
+    { enabled: status === "authenticated" }
+  );
+
   return (
     <div className="space-y-6">
       <CardDetaillDiscussionComment data={data?.data} isLoading={isPending} />

@@ -25,9 +25,7 @@ interface MessageDiscussionAnswerProps {
   id: string;
 }
 
-export default function MessageDiscussionAnswer({
-  id,
-}: MessageDiscussionAnswerProps) {
+export default function MessageDiscussionAnswer({ id }: MessageDiscussionAnswerProps) {
   const form = useForm<DiscussionMessageAnswerType>({
     resolver: zodResolver(discussionMessageAnswerSchema),
     defaultValues: {
@@ -40,6 +38,7 @@ export default function MessageDiscussionAnswer({
 
   const [fileName, setFileName] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const queryClient = useQueryClient();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -49,20 +48,13 @@ export default function MessageDiscussionAnswer({
     }
   };
 
-  const handleClickPaperclip = () => {
-    fileInputRef.current?.click();
-  };
-  const queryClient = useQueryClient();
+  const handleClickPaperclip = () => fileInputRef.current?.click();
 
   const { mutate: addHDHandler, isPending } = useAddNewDiscussionMessageAnswer({
-    onError: () => {
-      toast.error("Gagal mengirim pesan!");
-    },
+    onError: () => toast.error("Gagal mengirim pesan!"),
     onSuccess: () => {
       toast.success("Berhasil mengirim pesan!");
-      queryClient.invalidateQueries({
-        queryKey: ["discussion-comment-answer"],
-      });
+      queryClient.invalidateQueries({ queryKey: ["discussion-comment-answer"] });
       form.reset();
       setFileName(null);
     },
@@ -73,14 +65,15 @@ export default function MessageDiscussionAnswer({
   };
 
   return (
-    <div className="mb-6 w-full">
+    <div className="w-full">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-y-2 rounded-xl border p-4"
+          className="relative flex flex-col gap-2 rounded-xl border p-4 bg-white"
         >
+          {/* Preview File */}
           {fileName && (
-            <div className="bg-primary/10 flex items-center justify-between gap-x-2 rounded-md border p-2 text-sm text-gray-600">
+            <div className="bg-primary/10 flex items-center justify-between gap-x-2 rounded-md border p-2 text-sm text-gray-600 mb-2">
               <div className="flex items-center gap-x-2">
                 <FileImage className="h-5 w-5" />
                 {fileName}
@@ -97,15 +90,16 @@ export default function MessageDiscussionAnswer({
             </div>
           )}
 
+          {/* Textarea */}
           <FormField
             control={form.control}
             name="comment"
             render={({ field }) => (
-              <FormItem className="flex-grow">
+              <FormItem className="flex-grow w-full">
                 <FormControl>
                   <Textarea
-                    placeholder="Tulis pesan untuk disuksi disini..."
-                    className="resize-none border-0 p-0 shadow-none"
+                    placeholder="Tulis balasan disini..."
+                    className="resize-none border-0 p-2 shadow-none w-full min-h-[60px] md:min-h-[80px]"
                     rows={1}
                     {...field}
                   />
@@ -115,21 +109,17 @@ export default function MessageDiscussionAnswer({
             )}
           />
 
-          <div className="flex w-full items-center justify-end gap-x-2">
+          {/* Bottom-right actions */}
+          <div className="absolute right-4 bottom-4 flex items-center gap-2">
             <button type="button" onClick={handleClickPaperclip}>
               <Paperclip className="text-muted-foreground h-6 w-6 cursor-pointer" />
             </button>
-
-            <Button
-              type="submit"
-              disabled={isPending}
-              className="rounded-full"
-              size={"icon"}
-            >
+            <Button type="submit" disabled={isPending} size="icon" className="rounded-full">
               <ArrowUp className="h-8 w-8" />
             </Button>
           </div>
 
+          {/* Hidden file input */}
           <input
             type="file"
             ref={fileInputRef}
