@@ -12,9 +12,7 @@ interface DashboardDiscussionDetailWrapperProps {
   id: string;
 }
 
-export default function DashboardDiscussionDetailWrapper({
-  id,
-}: DashboardDiscussionDetailWrapperProps) {
+export default function DashboardDiscussionDetailWrapper({ id }: DashboardDiscussionDetailWrapperProps) {
   const { data: session, status } = useSession();
   const { data, isPending } = useGetDetailDiscussion(
     id,
