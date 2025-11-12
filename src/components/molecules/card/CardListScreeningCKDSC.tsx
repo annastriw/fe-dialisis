@@ -70,7 +70,7 @@ export default function CardListScreeningCKDSC() {
           <Card className="border-muted group-hover:bg-muted w-full border-2 shadow-transparent">
             <CardHeader className="flex md:flex-row md:items-center md:justify-between">
               <div className="space-y-2">
-                <Badge className="bg-[oklch(0.9_0.1_145)] font-semibold text-black">
+                <Badge className="bg-secondary font-semibold text-white">
                   Screening CKDSC
                 </Badge>
                 <CardTitle className="text-md font-bold md:text-xl">
