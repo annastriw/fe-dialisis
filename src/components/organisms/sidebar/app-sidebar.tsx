@@ -347,6 +347,26 @@ export function AppSidebar({ session }: AppSidebarProps) {
                     </SidebarMenu>
                   </SidebarGroupContent>
                 </SidebarGroup>
+
+                                {/* Laporan */}
+                <SidebarGroup>
+                  <SidebarGroupLabel>Laporan</SidebarGroupLabel>
+                  <SidebarGroupContent>
+                    <SidebarMenu>
+                      <SidebarMenuItem>
+                        <SidebarMenuButton
+                          asChild
+                          className={buttonClass("/dashboard/medical/reports")}
+                        >
+                          <Link href="/dashboard/medical/reports">
+                            <ClipboardList />
+                            <span>Laporan Keseluruhan</span>
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    </SidebarMenu>
+                  </SidebarGroupContent>
+                </SidebarGroup>
               </>
             )}
 
