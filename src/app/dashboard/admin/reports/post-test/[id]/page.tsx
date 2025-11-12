@@ -1,3 +1,4 @@
+// src/app/dashboard/admin/reports/post-test/[id]/page.tsx
 import DashboardTitleBold from "@/components/atoms/typography/DashboardTitleBold";
 import DashboardAdminReportDetailPostTestWrapper from "@/components/organisms/dashboard/admin/reports/post-test/DashboardAdminReportDetailPostTestWrapper";
 
