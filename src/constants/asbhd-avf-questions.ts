@@ -1,0 +1,18 @@
+export const ASBHDAVF_QUESTIONS = [
+  { id: 1, text: "Saya memberi tahu perawat ketika mengalami kram saat hemodialisis." },
+  { id: 2, text: "Saya melakukan penekanan dengan jari, pada area bekas tusukan (kurang dari 20 menit) setelah hemodialisis selesai." },
+  { id: 3, text: "Saya memberi tahu perawat ketika mengalami sakit kepala atau nyeri dada saat hemodialisis." },
+  { id: 4, text: "Saya mengoleskan salep jika muncul memar (hematoma)." },
+  { id: 5, text: "Saya merasakan adanya thrill (getaran/bunyi) di area fistula (cimino) dua kali sehari." },
+  { id: 6, text: "Saya menekan area tusukan fistula (cimino) dengan jari, jika terjadi perdarahan di rumah." },
+  { id: 7, text: "Saya memeriksa setiap hari kondisi tangan pada lengan area fistula (cimino) apakah terasa dingin." },
+  { id: 8, text: "Saya mengamati tanda-tanda kemerahan dan pembengkakan di area tusukan fistula (cimino)." },
+  { id: 9, text: "Saya melindungi lengan fistula (cimino) dari goresan, luka, dan cedera." },
+  { id: 10, text: "Saya memeriksa setiap hari perubahan warna tangan pada lengan area fistula (cimino)." },
+  { id: 11, text: "Saya melindungi lengan area fistula (cimino) dari benturan dan guncangan." },
+  { id: 12, text: "Saya mengizinkan pengambilan sampel darah pada lengan fistula (cimino)." },
+  { id: 13, text: "Saya memberi tahu perawat jika tangan pada lengan area fistula (cimino) mulai terasa sakit)." },
+  { id: 14, text: "Saya menghindari masuk ke tempat dengan perbedaan suhu ekstrem." },
+  { id: 15, text: "Saya segera pergi ke rumah sakit jika tidak merasakan thrill (getaran/bunyi) di area fistula (cimino)." },
+  { id: 16, text: "Saya memberi tahu perawat jika tangan pada lengan area fistula (cimino) tampak mengalami luka." },
+];

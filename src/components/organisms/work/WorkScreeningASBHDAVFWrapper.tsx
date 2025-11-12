@@ -138,11 +138,11 @@ const staticQuestions = [
     id: 12,
     question_text: "Saya mengizinkan pengambilan sampel darah pada lengan fistula (cimino).",
     options: [
-      { id: 1, option_text: "Tidak Pernah", score: 5 },
-      { id: 2, option_text: "Jarang", score: 4 },
+      { id: 1, option_text: "Tidak Pernah", score: 1 },
+      { id: 2, option_text: "Jarang", score: 2 },
       { id: 3, option_text: "Kadang - Kadang", score: 3 },
-      { id: 4, option_text: "Sering", score: 2 },
-      { id: 5, option_text: "Selalu", score: 1 },
+      { id: 4, option_text: "Sering", score: 4 },
+      { id: 5, option_text: "Selalu", score: 5 },
     ],
   },
       {

@@ -1,0 +1,17 @@
+export const CKDSC_QUESTIONS = [
+  { id: 1, text: "Saya sendiri mengubah waktu minum obat yang diresepkan." },
+  { id: 2, text: "Saya sendiri menghentikan konsumsi obat." },
+  { id: 3, text: "Saya tidak terus-menerus mengonsumsi obat." },
+  { id: 4, text: "Saya sendiri mengubah frekuensi konsumsi obat yang diresepkan." },
+  { id: 5, text: "Saya mengikuti prinsip diet penyakit ginjal saat makan." },
+  { id: 6, text: "Saya makan dengan jumlah yang cukup berdasarkan rekomendasi tenaga kesehatan." },
+  { id: 7, text: "Saya mengontrol asupan makanan dan nutrisi yang dikonsumsi." },
+  { id: 8, text: "Saya mengikuti prinsip diet penyakit ginjal bahkan saat liburan atau makan di luar." },
+  { id: 9, text: "Saya berolahraga secara teratur." },
+  { id: 10, text: "Saya tetap berusaha berolahraga untuk mengendalikan penyakit ginjal saya meskipun sedang tidak ingin berolahraga." },
+  { id: 11, text: "Saya tetap berusaha meluangkan waktu dari jadwal yang padat untuk berolahraga." },
+  { id: 12, text: "Saya merokok setiap hari." },
+  { id: 13, text: "Jika ada orang di sekitar yang merokok saya akan menghentikan atau menghindarinya." },
+  { id: 14, text: "Saya memantau tekanan darah saya." },
+  { id: 15, text: "Saya lebih sering mengukur tekanan darah saat tidak enak badan." },
+];
