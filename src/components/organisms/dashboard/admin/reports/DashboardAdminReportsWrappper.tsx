@@ -3,6 +3,8 @@
 import CardListReportHistoryPostTest from "@/components/molecules/card/CardListReportHistoryPostTest";
 import CardListReportHistoryPreTest from "@/components/molecules/card/CardListReportHistoryPreTest";
 import CardListReportHistoryScreening from "@/components/molecules/card/CardListReportHistoryScreening";
+import CardASBHDAVFOverview from "@/components/molecules/card/CardASBHDAVFOverview";
+import CardCKDSCOverview from "@/components/molecules/card/CardCKDSCOverview";
 import ReportSearchAndFilter from "@/components/molecules/search/ReportSearchFilter";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useGetAllScreening } from "@/http/screening/get-all-screening";
@@ -77,10 +79,12 @@ export default function DashboardAdminReportWrapper() {
           setTypeFilter("all"); // reset filter
         }}
       >
-        <TabsList className="mb-4 grid w-full max-w-sm grid-cols-3">
+        <TabsList className="mb-4 grid w-full max-w-md grid-cols-5">
           <TabsTrigger value="screening">Screening</TabsTrigger>
           <TabsTrigger value="pre-test">Pre Test</TabsTrigger>
           <TabsTrigger value="post-test">Post Test</TabsTrigger>
+          <TabsTrigger value="asbhd-avf">ASBHD-AVF</TabsTrigger>
+          <TabsTrigger value="ckdsc">CKDSC</TabsTrigger>
         </TabsList>
 
         <ReportSearchAndFilter
@@ -110,6 +114,14 @@ export default function DashboardAdminReportWrapper() {
             data={filteredPostTest}
             isLoading={postTestIsPending}
           />
+        </TabsContent>
+
+        <TabsContent value="asbhd-avf">
+          <CardASBHDAVFOverview />
+        </TabsContent>
+
+        <TabsContent value="ckdsc">
+          <CardCKDSCOverview />
         </TabsContent>
       </Tabs>
     </div>
