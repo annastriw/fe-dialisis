@@ -2,7 +2,7 @@
 
 import CardListScreening from "@/components/molecules/card/CardListScreening";
 import CardListScreeningASBHDAVF from "@/components/molecules/card/CardListScreeningASBHDAVF";
-import CardListScreeningCKDSC from "@/components/molecules/card/CardListScreeningCKDSC"; // ✅ Tambahan baru
+import CardListScreeningCKDSC from "@/components/molecules/card/CardListScreeningCKDSC";
 import { useGetAllScreening } from "@/http/screening/get-all-screening";
 import { useGetAllHistoryScreening } from "@/http/screening/get-history-all-screening";
 import { useSession } from "next-auth/react";

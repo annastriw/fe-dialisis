@@ -25,7 +25,7 @@ export default function CardListScreening({
 
   if (isLoading) {
     return (
-      <div className="space-y-4">
+      <div className="flex flex-col gap-6">
         {[...Array(4)].map((_, i) => (
           <div className="flex flex-row gap-6" key={i}>
             <Skeleton className="hidden aspect-video h-36 w-36 rounded-lg md:flex" />
@@ -61,8 +61,9 @@ export default function CardListScreening({
   const isAlreadyTaken = (screeningId: string) => {
     return history?.some((h) => h.screening.id === screeningId);
   };
+
   return (
-    <div>
+    <div className="flex flex-col gap-6">
       {data?.map((screening) => {
         const alreadyTaken = isAlreadyTaken(screening.id);
 
