@@ -1,3 +1,4 @@
+// src/app/dashboard/admin/reports/page.tsx
 import DashboardTitle from "@/components/atoms/typography/DashboardTitle";
 import DashboardAdminReportWrapper from "@/components/organisms/dashboard/admin/reports/DashboardAdminReportsWrappper";
 
