@@ -5,7 +5,7 @@
 import { useSession } from "next-auth/react";
 import { useGetScreeningCKDSCDetail } from "@/http/admin/screening-ckdsc/admin-get-screening-ckdsc-detail";
 import CardDetailNameOnTest from "@/components/molecules/card/CardDetailNameOnTest";
-import CardListHistoryQuestionScreeningCKDSC from "@/components/molecules/card/CardListHistoryQuestionScreeningCKDSC";
+import CardListHistoryQuestionScreeningCKDSC from "@/components/molecules/card/CardListHistoryQuestionScreeningCKDSCAdmin";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AlertTriangle } from "lucide-react";
 

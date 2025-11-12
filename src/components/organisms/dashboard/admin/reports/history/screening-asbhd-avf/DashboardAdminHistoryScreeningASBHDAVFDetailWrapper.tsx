@@ -5,7 +5,7 @@
 import { useSession } from "next-auth/react";
 import { useGetScreeningASBHDAVFDetail } from "@/http/admin/screening-asbhd-avf/admin-get-screening-asbhd-avf-detail";
 import CardDetailNameOnTest from "@/components/molecules/card/CardDetailNameOnTest";
-import CardListHistoryQuestionScreeningASBHDAVF from "@/components/molecules/card/CardListHistoryQuestionScreeningASBHDAVF";
+import CardListHistoryQuestionScreeningASBHDAVF from "@/components/molecules/card/CardListHistoryQuestionScreeningASBHDAVFAdmin";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AlertTriangle } from "lucide-react";
 
