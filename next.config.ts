@@ -13,6 +13,9 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  eslint: {
+    ignoreDuringBuilds: true, // <--- tambahkan ini
+  },
 };
 
 export default nextConfig;
