@@ -146,38 +146,39 @@ export default function CardListHistoryQuestionScreeningCKDSC({
         </CardContent>
       </Card>
 
-      {/* Detail pertanyaan */}
-      {CKDSC_QUESTIONS.map((question, idx) => {
-        const matchedAnswer = answers.find(
-          (ans) => ans.question_id === question.id
-        );
-        const selectedScore = matchedAnswer?.score ?? -1;
+{/* Detail pertanyaan */}
+{CKDSC_QUESTIONS.map((question, idx) => {
+  const matchedAnswer = answers.find(
+    (ans) => ans.question_id === question.id
+  );
+  const selectedScore = matchedAnswer?.score ?? -1;
 
-        return (
-          <Card key={question.id}>
-            <CardHeader>
-              <CardTitle className="text-xl">{idx + 1}.</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="font-medium">{question.text}</p>
-              <div className="space-y-2">
-                {OPTION_LABELS.map((label, i) => (
-                  <div
-                    key={i}
-                    className={`flex items-center px-2 ${
-                      selectedScore === i
-                        ? "text-green-600 font-medium"
-                        : "text-muted-foreground"
-                    }`}
-                  >
-                    <span>{label}</span>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        );
-      })}
+  return (
+    <Card key={question.id}>
+      <CardHeader>
+        <CardTitle className="text-xl">{idx + 1}.</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <p className="font-medium">{question.text}</p>
+        <div className="space-y-2">
+          {OPTION_LABELS.map((label, i) => (
+            <div
+              key={i}
+              className={`flex items-center px-2 ${
+                selectedScore === i + 1 // tambahkan +1 karena backend mulai dari 1
+                  ? "text-green-600 font-medium"
+                  : "text-muted-foreground"
+              }`}
+            >
+              <span>{label}</span>
+            </div>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
+  );
+})}
+
     </div>
   );
 }
