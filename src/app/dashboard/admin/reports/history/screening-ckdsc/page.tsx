@@ -1,3 +1,4 @@
+// src/app/dashboard/admin/reports/history/screening-ckdsc/page.tsx
 import DashboardTitle from "@/components/atoms/typography/DashboardTitle";
 import DashboardAdminReportHistoryScreeningCKDSCWrapper from "@/components/organisms/dashboard/admin/reports/history/screening-ckdsc/DashboardAdminReportHistoryScreeningCKDSCWrapper";
 
