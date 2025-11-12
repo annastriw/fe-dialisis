@@ -79,13 +79,14 @@ export default function DashboardAdminReportWrapper() {
           setTypeFilter("all"); // reset filter
         }}
       >
-        <TabsList className="mb-4 grid w-full max-w-md grid-cols-5">
-          <TabsTrigger value="screening">Screening</TabsTrigger>
-          <TabsTrigger value="pre-test">Pre Test</TabsTrigger>
-          <TabsTrigger value="post-test">Post Test</TabsTrigger>
-          <TabsTrigger value="asbhd-avf">ASBHD-AVF</TabsTrigger>
-          <TabsTrigger value="ckdsc">CKDSC</TabsTrigger>
-        </TabsList>
+<TabsList className="mb-4 grid w-full max-w-md grid-cols-5">
+  <TabsTrigger value="screening">Screening</TabsTrigger>
+  <TabsTrigger value="asbhd-avf">ASBHD-AVF</TabsTrigger>
+  <TabsTrigger value="ckdsc">CKDSC</TabsTrigger>
+  <TabsTrigger value="pre-test">Pre Test</TabsTrigger>
+  <TabsTrigger value="post-test">Post Test</TabsTrigger>
+</TabsList>
+
 
         <ReportSearchAndFilter
           tab={activeTab}
