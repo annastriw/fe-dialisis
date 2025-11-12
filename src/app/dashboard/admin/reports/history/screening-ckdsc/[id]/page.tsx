@@ -1,9 +1,14 @@
 // src/app/dashboard/admin/reports/history/screening-ckdsc/[id]/page.tsx
-
 import DashboardTitle from "@/components/atoms/typography/DashboardTitle";
 import DashboardAdminHistoryScreeningCKDSCDetailWrapper from "@/components/organisms/dashboard/admin/reports/history/screening-ckdsc/DashboardAdminHistoryScreeningCKDSCDetailWrapper";
 
-export default function Page({ params }: any) {
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default function Page({ params }: PageProps) {
   const { id } = params;
 
   return (

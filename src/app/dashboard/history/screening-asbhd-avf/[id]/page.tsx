@@ -1,7 +1,14 @@
+// src/app/dashboard/history/screening-asbhd-avf/[id]/page.tsx
 import DashboardTitle from "@/components/atoms/typography/DashboardTitle";
 import DashboardHistoryScreeningASBHDAVFDetailWrapper from "@/components/organisms/dashboard/history/DashboardHistoryScreeningASBHDAVFDetailWrapper";
 
-export default function Page({ params }: any) {
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default function Page({ params }: PageProps) {
   const { id } = params;
 
   return (

@@ -1,9 +1,14 @@
 // src/app/dashboard/medical/reports/history/screening-ckdsc/[id]/page.tsx
-
 import DashboardTitle from "@/components/atoms/typography/DashboardTitle";
 import DashboardMedicalHistoryScreeningCKDSCDetailWrapper from "@/components/organisms/dashboard/medical/reports/history/screening-ckdsc/DashboardMedicalHistoryScreeningCKDSCDetailWrapper";
 
-export default function Page({ params }: any) {
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default function Page({ params }: PageProps) {
   const { id } = params;
 
   return (
