@@ -1,3 +1,4 @@
+// src/app/dashboard/admin/reports/history/post-history/[id]/page.tsx
 import DashboardAdminReportHistoryPostTestWrapper from "@/components/organisms/dashboard/admin/reports/history/post-test/DashboardAdminReportHistoryPostTestWrapper";
 
 interface DashboardAdminReportHistoryPostTestPageProps {
