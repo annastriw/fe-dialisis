@@ -3,7 +3,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ClipboardPenLine, FileX2 } from "lucide-react";
+import { ClipboardPenLine, FileX2, Clock } from "lucide-react";
 import Link from "next/link";
 import { format } from "date-fns";
 import { id as idLocale } from "date-fns/locale";
@@ -55,9 +55,9 @@ export default function CardListHistoryScreeningCKDSC({
   return (
     <div className="space-y-4">
       {data.map((item) => {
-        const formattedDate = format(new Date(item.created_at), "dd MMMM yyyy", {
-          locale: idLocale,
-        });
+        const date = new Date(item.created_at);
+        const formattedDate = format(date, "dd MMMM yyyy", { locale: idLocale });
+        const formattedTime = format(date, "HH:mm");
 
         return (
           <Link
@@ -78,7 +78,13 @@ export default function CardListHistoryScreeningCKDSC({
                   <CardTitle className="text-md font-bold md:text-xl">
                     Riwayat Screening CKDSC
                   </CardTitle>
-                  <p className="text-muted-foreground text-sm">{formattedDate}</p>
+                  <div className="flex items-center gap-2 text-muted-foreground text-sm">
+                    <p>{formattedDate}</p>
+                    <div className="flex items-center gap-1">
+                      <Clock className="w-4 h-4" />
+                      <span>{formattedTime}</span>
+                    </div>
+                  </div>
                 </CardHeader>
               </Card>
             </div>
