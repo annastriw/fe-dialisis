@@ -3,14 +3,17 @@
 import DashboardTitle from "@/components/atoms/typography/DashboardTitle";
 import DashboardMedicalReportHistoryScreeningWrapper from "@/components/organisms/dashboard/medical/reports/history/screening/DashboardMedicalReportHistoryScreeningWrapper";
 
+// Sesuaikan tipe props dengan App Router
 interface DashboardMedicalReportHistoryScreeningPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
-export default function DashboardMedicalReportHistoryScreeningPage({
+// Page component dibuat async untuk kompatibilitas server-side fetching
+export default async function DashboardMedicalReportHistoryScreeningPage({
   params,
 }: DashboardMedicalReportHistoryScreeningPageProps) {
-  const { id } = params;
+  // Tunggu params karena sekarang bertipe Promise
+  const { id } = await params;
 
   return (
     <section>

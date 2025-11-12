@@ -2,13 +2,15 @@
 import DashboardTitle from "@/components/atoms/typography/DashboardTitle";
 import DashboardAdminHistoryScreeningCKDSCDetailWrapper from "@/components/organisms/dashboard/admin/reports/history/screening-ckdsc/DashboardAdminHistoryScreeningCKDSCDetailWrapper";
 
+// Sesuaikan tipe props dengan App Router
 interface PageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
-// Page component async untuk kompatibilitas App Router
+// Page component async untuk kompatibilitas server-side fetching
 export default async function Page({ params }: PageProps) {
-  const { id } = params;
+  // Tunggu params karena sekarang bertipe Promise
+  const { id } = await params;
 
   return (
     <section className="space-y-6">

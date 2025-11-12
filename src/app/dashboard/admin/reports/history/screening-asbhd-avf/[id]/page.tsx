@@ -2,13 +2,14 @@
 import DashboardTitle from "@/components/atoms/typography/DashboardTitle";
 import DashboardAdminHistoryScreeningASBHDAVFDetailWrapper from "@/components/organisms/dashboard/admin/reports/history/screening-asbhd-avf/DashboardAdminHistoryScreeningASBHDAVFDetailWrapper";
 
+// PageProps disesuaikan dengan tipe bawaan Next.js App Router
 interface PageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>; // params di-app router bisa berupa Promise
 }
 
-// Page component tetap async untuk mendukung server-side fetching
 export default async function Page({ params }: PageProps) {
-  const { id } = params;
+  // Pastikan menunggu Promise params
+  const { id } = await params;
 
   return (
     <section className="space-y-6">

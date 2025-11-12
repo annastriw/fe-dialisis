@@ -3,14 +3,16 @@
 import DashboardTitleBold from "@/components/atoms/typography/DashboardTitleBold";
 import DashboardMedicalReportScreeningDetailWrapper from "@/components/organisms/dashboard/medical/reports/screening/DashboardMedicalReportScreeningDetailWrapper";
 
+// Sesuaikan tipe props dengan App Router
 interface DashboardMedicalDetailReportScreeningPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
-export default function DashboardMedicalDetailReportScreeningPage({
+export default async function DashboardMedicalDetailReportScreeningPage({
   params,
 }: DashboardMedicalDetailReportScreeningPageProps) {
-  const { id } = params;
+  // Tunggu params karena sekarang bertipe Promise
+  const { id } = await params;
 
   return (
     <section>
