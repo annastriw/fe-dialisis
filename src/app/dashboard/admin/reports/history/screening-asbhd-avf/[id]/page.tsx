@@ -3,12 +3,11 @@ import DashboardTitle from "@/components/atoms/typography/DashboardTitle";
 import DashboardAdminHistoryScreeningASBHDAVFDetailWrapper from "@/components/organisms/dashboard/admin/reports/history/screening-asbhd-avf/DashboardAdminHistoryScreeningASBHDAVFDetailWrapper";
 
 interface PageProps {
-  params: {
-    id: string;
-  };
+  params: { id: string };
 }
 
-export default function Page({ params }: PageProps) {
+// Next.js 13 App Router: page component bisa async untuk mendukung data fetching
+export default async function Page({ params }: PageProps) {
   const { id } = params;
 
   return (
