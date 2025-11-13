@@ -11,6 +11,8 @@ import { id as idLocale } from "date-fns/locale";
 export interface ScreeningASBHDAVFHistoryItem {
   id: string;
   created_at: string;
+  score: number;
+  category: string;
 }
 
 interface CardListHistoryScreeningASBHDAVFProps {
@@ -59,6 +61,13 @@ export default function CardListHistoryScreeningASBHDAVF({
         const formattedDate = format(date, "dd MMMM yyyy", { locale: idLocale });
         const formattedTime = format(date, "HH:mm");
 
+        const badgeColor =
+          item.category === "Tinggi"
+            ? "bg-green-600"
+            : item.category === "Sedang"
+            ? "bg-yellow-500"
+            : "bg-red-600";
+
         return (
           <Link
             href={`/dashboard/history/screening-asbhd-avf/${item.id}`}
@@ -70,14 +79,24 @@ export default function CardListHistoryScreeningASBHDAVF({
                 <ClipboardPenLine className="text-background m-auto h-12 w-12" />
               </div>
 
-              <Card className="border-muted group-hover:bg-muted w-full border-2 shadow-transparent">
-                <CardHeader className="space-y-1">
-                  <Badge className="bg-secondary font-semibold text-white">
-                    Screening ASBHD-AVF
-                  </Badge>
+              <Card className="border-muted group-hover:bg-muted w-full border-2 shadow-transparent transition-colors">
+                <CardHeader className="space-y-2">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Badge className="bg-secondary font-semibold text-white">
+                      Screening ASBHD-AVF
+                    </Badge>
+                    <Badge className={`${badgeColor} font-semibold text-white`}>
+                      {item.category}
+                    </Badge>
+                    <Badge variant="outline" className="font-semibold">
+                      Skor: {item.score}
+                    </Badge>
+                  </div>
+
                   <CardTitle className="text-md font-bold md:text-xl">
                     Riwayat Screening ASBHD-AVF
                   </CardTitle>
+
                   <div className="flex items-center gap-2 text-muted-foreground text-sm">
                     <p>{formattedDate}</p>
                     <div className="flex items-center gap-1">
