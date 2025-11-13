@@ -60,9 +60,12 @@ export default function CardListHistoryPostTest({
             className="group block"
           >
             <div className="flex flex-row gap-6">
+              {/* Ikon kiri */}
               <div className="group-hover:bg-secondary bg-primary relative hidden aspect-video h-36 w-36 items-center justify-center rounded-lg md:flex">
                 <ClipboardPenLine className="text-background m-auto h-12 w-12" />
               </div>
+
+              {/* Konten Card */}
               <Card className="border-muted group-hover:bg-muted w-full border-2 shadow-transparent">
                 <CardHeader className="space-y-1">
                   <Badge className="bg-secondary font-semibold text-white">
@@ -71,11 +74,18 @@ export default function CardListHistoryPostTest({
                   <CardTitle className="text-md font-bold md:text-xl">
                     {postTestHistory.post_test.name}
                   </CardTitle>
-                  <div className="flex items-center gap-2 text-muted-foreground text-sm">
+
+                  {/* Detail tanggal, waktu, skor */}
+                  <div className="flex flex-wrap items-center gap-3 text-muted-foreground text-sm">
                     <p>{formattedDate}</p>
                     <div className="flex items-center gap-1">
                       <Clock className="w-4 h-4" />
                       <span>{formattedTime}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span className="font-semibold text-primary">
+                        Skor: {postTestHistory.sum_score}
+                      </span>
                     </div>
                   </div>
                 </CardHeader>
