@@ -79,7 +79,14 @@ export default function DashboardHistoryWrapper() {
         {/* ASBHD-AVF */}
         <TabsContent value="asbhd-avf">
           <CardListHistoryScreeningASBHDAVF
-            data={screeningASBHDAVF || []}
+            data={
+              (screeningASBHDAVF || []).map((item: any) => ({
+                id: item.id,
+                created_at: item.created_at,
+                score: item.score,
+                category: item.category,
+              })) || []
+            }
             isLoading={screeningASBHDAVFIsPending}
           />
         </TabsContent>
@@ -87,7 +94,14 @@ export default function DashboardHistoryWrapper() {
         {/* CKDSC */}
         <TabsContent value="ckdsc">
           <CardListHistoryScreeningCKDSC
-            data={screeningCKDSC || []}
+            data={
+              (screeningCKDSC || []).map((item: any) => ({
+                id: item.id,
+                created_at: item.created_at,
+                sum_score: item.sum_score,
+                category: item.category,
+              })) || []
+            }
             isLoading={screeningCKDSCIsPending}
           />
         </TabsContent>
