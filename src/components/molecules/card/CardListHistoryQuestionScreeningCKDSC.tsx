@@ -16,7 +16,7 @@ import {
   Legend,
 } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
-import { CKDSC_QUESTIONS } from "@/constants/ckdsc-questions"; // kamu isi manual nanti
+import { CKDSC_QUESTIONS } from "@/constants/ckdsc-questions";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -25,12 +25,12 @@ type Interpretation = "Rendah" | "Sedang" | "Tinggi";
 
 interface Answer {
   question_id: number;
-  score: number;
+  score: number; // backend 1–5
 }
 
 interface Props {
   answers: Answer[];
-  score: number; // total skor sesuai backend
+  score: number;
   interpretation: Interpretation;
   description: string;
   createdAt?: string | Date;
@@ -38,6 +38,17 @@ interface Props {
 }
 
 /* ---------- constants ---------- */
+const FAVORABLE_IDS: number[] = [
+  // Soal favorable (barang baik → skor besar)
+  // berdasarkan instruksi user
+  5, 6, 7, 8, 9, 10, 11,
+  13, 14, 15
+];
+
+const NON_FAVORABLE_IDS: number[] = [
+  1, 2, 3, 4, 12
+];
+
 const OPTION_LABELS = [
   "A. Tidak Pernah",
   "B. Jarang",
@@ -71,13 +82,30 @@ const chartConfig = (value: number, color: string) => ({
   labels: [],
   datasets: [
     {
-      data: [value, 100 - value], // asumsi nilai maksimum 100 (ubah jika backend punya batas lain)
+      data: [value, 100 - value],
       backgroundColor: [color, "#e5e7eb"],
       borderWidth: 0,
       cutout: "70%",
     },
   ],
 });
+
+/**
+ * Menghasilkan label jawaban A–E berdasarkan favorable/non-favorable.
+ * Backend memberikan skor 1–5 → convert ke 0–4 untuk mapping.
+ */
+function getLabelByQuestionType(questionId: number, backendScore: number): string {
+  const raw = backendScore - 1; // convert ke 0–4
+
+  if (FAVORABLE_IDS.includes(questionId)) {
+    return OPTION_LABELS[raw] ?? "-";
+  } else if (NON_FAVORABLE_IDS.includes(questionId)) {
+    const reversed = 4 - raw;
+    return OPTION_LABELS[reversed] ?? "-";
+  } else {
+    return "-";
+  }
+}
 
 /* ---------- component ---------- */
 export default function CardListHistoryQuestionScreeningCKDSC({
@@ -139,46 +167,61 @@ export default function CardListHistoryQuestionScreeningCKDSC({
           <p className="pt-2 text-foreground">
             Hasil screening ini memberikan gambaran mengenai perilaku perawatan diri
             pasien penyakit ginjal kronik (CKD).  
-            Gunakan hasil ini sebagai bahan refleksi dan diskusikan dengan tenaga
-            kesehatan untuk meningkatkan kepatuhan terhadap pengelolaan gaya hidup
-            dan terapi.
+            Gunakan hasil ini sebagai bahan refleksi dan diskusikan dengan tenaga kesehatan.
           </p>
         </CardContent>
       </Card>
 
-{/* Detail pertanyaan */}
-{CKDSC_QUESTIONS.map((question, idx) => {
-  const matchedAnswer = answers.find(
-    (ans) => ans.question_id === question.id
-  );
-  const selectedScore = matchedAnswer?.score ?? -1;
+      {/* Detail pertanyaan */}
+      {CKDSC_QUESTIONS.map((question, idx) => {
+        const matchedAnswer = answers.find(
+          (ans) => ans.question_id === question.id
+        );
+        const backendScore = matchedAnswer?.score ?? -1;
 
-  return (
-    <Card key={question.id}>
-      <CardHeader>
-        <CardTitle className="text-xl">{idx + 1}.</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <p className="font-medium">{question.text}</p>
-        <div className="space-y-2">
-          {OPTION_LABELS.map((label, i) => (
-            <div
-              key={i}
-              className={`flex items-center px-2 ${
-                selectedScore === i + 1 // tambahkan +1 karena backend mulai dari 1
-                  ? "text-green-600 font-medium"
-                  : "text-muted-foreground"
-              }`}
-            >
-              <span>{label}</span>
-            </div>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
-  );
-})}
+        return (
+          <Card key={question.id}>
+            <CardHeader>
+              <CardTitle className="text-xl">{idx + 1}.</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="font-medium">{question.text}</p>
 
+              <div className="space-y-2">
+                {OPTION_LABELS.map((label, i) => {
+                  // A–E indeks 0–4
+                  const optionIndex = i;
+
+                  // backend → convert 1–5 to 0–4
+                  const raw = backendScore - 1;
+
+                  let isSelected = false;
+
+                  if (FAVORABLE_IDS.includes(question.id)) {
+                    isSelected = raw === optionIndex;
+                  } else if (NON_FAVORABLE_IDS.includes(question.id)) {
+                    // dibalik: 4–0
+                    isSelected = raw === 4 - optionIndex;
+                  }
+
+                  return (
+                    <div
+                      key={i}
+                      className={`flex items-center px-2 ${
+                        isSelected
+                          ? "text-green-600 font-medium"
+                          : "text-muted-foreground"
+                      }`}
+                    >
+                      <span>{label}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </CardContent>
+          </Card>
+        );
+      })}
     </div>
   );
 }

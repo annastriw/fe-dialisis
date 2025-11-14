@@ -16,7 +16,7 @@ import {
   Legend,
 } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
-import { ASBHDAVF_QUESTIONS } from "@/constants/asbhd-avf-questions"; // kamu isi manual nanti
+import { ASBHDAVF_QUESTIONS } from "@/constants/asbhd-avf-questions";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -30,7 +30,7 @@ interface Answer {
 
 interface Props {
   answers: Answer[];
-  score: number; // total skor sesuai backend
+  score: number;
   interpretation: Interpretation;
   description: string;
   createdAt?: string | Date;
@@ -71,7 +71,7 @@ const chartConfig = (value: number, color: string) => ({
   labels: [],
   datasets: [
     {
-      data: [value, 100 - value], // asumsi nilai maksimum 100 (sesuaikan kalau backend punya batas lain)
+      data: [value, 100 - value],
       backgroundColor: [color, "#e5e7eb"],
       borderWidth: 0,
       cutout: "70%",
@@ -102,7 +102,7 @@ export default function CardListHistoryQuestionScreeningASBHDAVF({
 
   return (
     <div className="space-y-4">
-      {/* Ringkasan dan chart */}
+      {/* Ringkasan */}
       <Card>
         <CardHeader>
           <CardTitle>Hasil Screening ASBHD-AVF</CardTitle>
@@ -117,7 +117,6 @@ export default function CardListHistoryQuestionScreeningASBHDAVF({
             </p>
           )}
 
-          {/* Doughnut chart */}
           <div className="flex flex-col items-center gap-2 pt-2">
             <div className="relative h-[120px] w-[120px]">
               <Doughnut
@@ -133,49 +132,67 @@ export default function CardListHistoryQuestionScreeningASBHDAVF({
             </p>
           </div>
 
-          {/* Interpretasi */}
           <p className={`text-sm ${color.text}`}>{description}</p>
 
           <p className="pt-2 text-foreground">
-            Hasil screening ini memberikan gambaran tentang perilaku perawatan diri
-            pasien hemodialisis dengan arteriovenous fistula.  
-            Diskusikan hasil ini dengan tenaga kesehatan untuk menjaga kualitas akses vaskular yang optimal.
+            Hasil screening ini memberikan gambaran tentang perilaku perawatan
+            diri pasien hemodialisis dengan penggunaan AVF. 
+            Jika perlu, diskusikan hasil ini dengan tenaga kesehatan Anda.
           </p>
         </CardContent>
       </Card>
 
-{/* Detail pertanyaan */}
-{ASBHDAVF_QUESTIONS.map((question, idx) => {
-  const matchedAnswer = answers.find(
-    (ans) => ans.question_id === question.id
-  );
-  const selectedScore = matchedAnswer?.score ?? -1;
+      {/* Daftar Pertanyaan */}
+      {ASBHDAVF_QUESTIONS.map((question, idx) => {
+        const matchedAnswer = answers.find(
+          (ans) => ans.question_id === question.id
+        );
 
-  return (
-    <Card key={question.id}>
-      <CardHeader>
-        <CardTitle className="text-xl">{idx + 1}.</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <p className="font-medium">{question.text}</p>
-        <div className="space-y-2">
-          {OPTION_LABELS.map((label, i) => (
-            <div
-              key={i}
-              className={`flex items-center px-2 ${
-                selectedScore === i + 1
-                  ? "text-green-600 font-medium"
-                  : "text-muted-foreground"
-              }`}
-            >
-              <span>{label}</span>
-            </div>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
-  );
-})}
+        let selectedScore = matchedAnswer?.score ?? -1;
+
+        /* ---------------------------------------------
+         * 🤚 Logika Non-Favorable Khusus Nomor 12
+         * ---------------------------------------------
+         * Backend 5 → User melihat “Tidak Pernah” (1)
+         * Backend 4 → User melihat “Jarang” (2)
+         * Backend 3 → User melihat “Kadang-kadang” (3)
+         * Backend 2 → User melihat “Sering” (4)
+         * Backend 1 → User melihat “Selalu” (5)
+         */
+        if (question.id === 12) {
+          if (selectedScore >= 1 && selectedScore <= 5) {
+            selectedScore = 6 - selectedScore; // membalik skor
+          }
+        }
+
+        return (
+          <Card key={question.id}>
+            <CardHeader>
+              <CardTitle className="text-xl">
+                {idx + 1}.
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="font-medium">{question.text}</p>
+
+              <div className="space-y-2">
+                {OPTION_LABELS.map((label, i) => (
+                  <div
+                    key={i}
+                    className={`flex items-center px-2 ${
+                      selectedScore === i + 1
+                        ? "text-green-600 font"
+                        : "text-muted-foreground"
+                    }`}
+                  >
+                    <span>{label}</span>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        );
+      })}
     </div>
   );
 }
