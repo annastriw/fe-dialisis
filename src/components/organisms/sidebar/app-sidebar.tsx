@@ -31,6 +31,7 @@ import {
   Users,
   CircleHelp,
   UserRoundSearch,
+  MailPlus,
 } from "lucide-react";
 import { NavUser } from "./NavUser";
 import { useGetCheckPersonalInformation } from "@/http/personal-information/get-check-personal-information";
@@ -68,25 +69,28 @@ export function AppSidebar({ session }: AppSidebarProps) {
       {/* Header */}
       <SidebarHeader className="h-14 cursor-default justify-center border-b bg-white dark:bg-slate-950">
         <SidebarMenu>
-<SidebarMenuItem>
-  <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.25 }}>
-    <Link href="/dashboard" className="group flex items-center gap-2">
-      {/* Logo */}
-      <Image
-        src="/images/assets/bg-about-us.png"
-        alt="Dialisis Connect Edu"
-        width={40}
-        height={40}
-        className="h-10 w-10 object-contain md:h-12 md:w-12"
-      />
+          <SidebarMenuItem>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.25 }}
+            >
+              <Link href="/dashboard" className="group flex items-center gap-2">
+                {/* Logo */}
+                <Image
+                  src="/images/assets/bg-about-us.png"
+                  alt="Dialisis Connect Edu"
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 object-contain md:h-12 md:w-12"
+                />
 
-      {/* Text */}
-      <span className="group-hover:from-primary group-hover:to-secondary text-lg font-bold tracking-tight text-black transition-all group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:text-transparent">
-        Dialisis Connect Edu
-      </span>
-    </Link>
-  </motion.div>
-</SidebarMenuItem>
+                {/* Text */}
+                <span className="group-hover:from-primary group-hover:to-secondary text-lg font-bold tracking-tight text-black transition-all group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:text-transparent">
+                  Dialisis Connect Edu
+                </span>
+              </Link>
+            </motion.div>
+          </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
 
@@ -157,6 +161,17 @@ export function AppSidebar({ session }: AppSidebarProps) {
                               <Link href="/dashboard/modules">
                                 <NotebookText />
                                 <span>Modul Materi</span>
+                              </Link>
+                            </SidebarMenuButton>
+                          </SidebarMenuItem>
+                          <SidebarMenuItem>
+                            <SidebarMenuButton
+                              asChild
+                              className={buttonClass("/dashboard/booking")}
+                            >
+                              <Link href="/dashboard/booking">
+                                <MailPlus />
+                                <span>Booking</span>
                               </Link>
                             </SidebarMenuButton>
                           </SidebarMenuItem>
@@ -348,7 +363,7 @@ export function AppSidebar({ session }: AppSidebarProps) {
                   </SidebarGroupContent>
                 </SidebarGroup>
 
-                                {/* Laporan */}
+                {/* Laporan */}
                 <SidebarGroup>
                   <SidebarGroupLabel>Laporan</SidebarGroupLabel>
                   <SidebarGroupContent>
