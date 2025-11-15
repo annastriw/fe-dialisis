@@ -16,7 +16,7 @@ import {
   Legend,
 } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
-import { CKDSC_QUESTIONS } from "@/constants/ckdsc-questions"; // kamu isi manual nanti
+import { CKDSC_QUESTIONS } from "@/constants/ckdsc-questions";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -25,12 +25,12 @@ type Interpretation = "Rendah" | "Sedang" | "Tinggi";
 
 interface Answer {
   question_id: number;
-  score: number;
+  score: number; // backend 1–5
 }
 
 interface Props {
   answers: Answer[];
-  score: number; // total skor sesuai backend
+  score: number;
   interpretation: Interpretation;
   description: string;
   createdAt?: string | Date;
@@ -44,6 +44,17 @@ const OPTION_LABELS = [
   "C. Kadang-kadang",
   "D. Sering",
   "E. Selalu",
+];
+
+// Favorable → skor besar = baik
+const FAVORABLE_IDS: number[] = [
+  5, 6, 7, 8, 9, 10, 11,
+  13, 14, 15
+];
+
+// Non-favorable → skor kecil = baik → dibalik
+const NON_FAVORABLE_IDS: number[] = [
+  1, 2, 3, 4, 12
 ];
 
 /* ---------- utils ---------- */
@@ -71,7 +82,7 @@ const chartConfig = (value: number, color: string) => ({
   labels: [],
   datasets: [
     {
-      data: [value, 100 - value], // asumsi nilai maksimum 100 (ubah jika backend punya batas lain)
+      data: [value, 100 - value],
       backgroundColor: [color, "#e5e7eb"],
       borderWidth: 0,
       cutout: "70%",
@@ -80,7 +91,7 @@ const chartConfig = (value: number, color: string) => ({
 });
 
 /* ---------- component ---------- */
-export default function CardListHistoryQuestionScreeningCKDSC({
+export default function CardListHistoryQuestionScreeningCKDSCAdmin({
   answers = [],
   score,
   interpretation,
@@ -102,7 +113,7 @@ export default function CardListHistoryQuestionScreeningCKDSC({
 
   return (
     <div className="space-y-4">
-      {/* Ringkasan dan chart */}
+      {/* Ringkasan */}
       <Card>
         <CardHeader>
           <CardTitle>Hasil Screening CKDSC</CardTitle>
@@ -138,54 +149,70 @@ export default function CardListHistoryQuestionScreeningCKDSC({
 
           <p className="pt-2 text-foreground">
             Hasil screening ini memberikan gambaran mengenai perilaku perawatan diri
-            pasien penyakit ginjal kronik (CKD).  
-            Gunakan hasil ini sebagai bahan refleksi dan diskusikan dengan tenaga
-            kesehatan untuk meningkatkan kepatuhan terhadap pengelolaan gaya hidup
-            dan terapi.
+            pasien CKD. Gunakan hasil ini sebagai bahan refleksi dan diskusikan
+            dengan tenaga kesehatan.
           </p>
         </CardContent>
       </Card>
 
-{/* Detail pertanyaan */}
-{CKDSC_QUESTIONS.map((question, idx) => {
-  const matchedAnswer = answers.find(
-    (ans) => ans.question_id === question.id
-  );
-  const selectedScore = matchedAnswer?.score ?? -1; // backend mulai dari 1
+      {/* Detail pertanyaan */}
+      {CKDSC_QUESTIONS.map((question, idx) => {
+        const matchedAnswer = answers.find(
+          (ans) => ans.question_id === question.id
+        );
 
-  return (
-    <Card key={question.id}>
-      <CardHeader>
-        <CardTitle className="text-xl">{idx + 1}.</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <p className="font-medium">{question.text}</p>
-        <div className="space-y-2">
-          {OPTION_LABELS.map((label, i) => {
-            const optionScore = i + 1;
-            const isSelected = optionScore === selectedScore;
+        const backendScore = matchedAnswer?.score ?? -1; // 1–5
+        const rawIndex = backendScore - 1; // 0–4
 
-            return (
-              <div
-                key={i}
-                className={`flex items-center px-2 gap-2 ${
-                  isSelected
-                    ? "text-green-600 font-medium"
-                    : "text-muted-foreground"
-                }`}
-              >
-                <span>{label}</span>
-                {isSelected && <span className="font-medium">+{optionScore}</span>}
+        // Index jawaban untuk highlight tetap berdasarkan backend
+        const selectedIndex =
+          FAVORABLE_IDS.includes(question.id)
+            ? rawIndex
+            : NON_FAVORABLE_IDS.includes(question.id)
+            ? 4 - rawIndex
+            : rawIndex;
+
+        return (
+          <Card key={question.id}>
+            <CardHeader>
+              <CardTitle className="text-xl">{idx + 1}.</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="font-medium">{question.text}</p>
+
+              <div className="space-y-2">
+                {OPTION_LABELS.map((label, optionIdx) => {
+                  const isSelected = optionIdx === selectedIndex;
+
+                  // Skor FINAL untuk ditampilkan (+x)
+                  const displayedScore = FAVORABLE_IDS.includes(question.id)
+                    ? optionIdx + 1 // favorable normal
+                    : NON_FAVORABLE_IDS.includes(question.id)
+                    ? 5 - optionIdx // non-favorable dibalik
+                    : optionIdx + 1; // fallback
+
+                  return (
+                    <div
+                      key={optionIdx}
+                      className={`flex items-center px-2 gap-2 ${
+                        isSelected
+                          ? "text-green-600 font-medium"
+                          : "text-muted-foreground"
+                      }`}
+                    >
+                      <span>{label}</span>
+
+                      {isSelected && (
+                        <span className="font-medium">+{displayedScore}</span>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
-            );
-          })}
-        </div>
-      </CardContent>
-    </Card>
-  );
-})}
-
-
+            </CardContent>
+          </Card>
+        );
+      })}
     </div>
   );
 }
