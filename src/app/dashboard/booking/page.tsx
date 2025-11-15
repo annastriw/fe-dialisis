@@ -6,7 +6,7 @@ export default function BookingPage() {
     <section>
       <DashboardTitle
         head="Booking Konsultasi"
-        body="Menampilkan data riwayat booking konsultasi."
+        body="Menampilkan data riwayat booking konsultasi yang telah dilakukan pengguna, termasuk informasi waktu, serta detail terkait proses pemesanan."
       />
       <DashboardBookingWrapper />
     </section>
