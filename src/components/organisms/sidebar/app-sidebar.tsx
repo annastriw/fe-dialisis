@@ -266,6 +266,17 @@ export function AppSidebar({ session }: AppSidebarProps) {
                       <SidebarMenuItem>
                         <SidebarMenuButton
                           asChild
+                          className={buttonClass("/dashboard/admin/booking")}
+                        >
+                          <Link href="/dashboard/admin/booking">
+                            <History />
+                            <span>Riwayat Booking</span>
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                      <SidebarMenuItem>
+                        <SidebarMenuButton
+                          asChild
                           className={buttonClass("/dashboard/admin/faqs")}
                         >
                           <Link href="/dashboard/admin/faqs">
