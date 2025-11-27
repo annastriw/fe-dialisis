@@ -1,5 +1,6 @@
 "use client";
 
+import AlertiInformationBooking from "@/components/atoms/alert/AlertiInformationBooking";
 import { bookingColumns } from "@/components/atoms/datacolumn/DataBooking";
 import DialogDetailBooking from "@/components/atoms/dialog/DialogDetailBooking";
 import { DataTable } from "@/components/molecules/datatable/DataTable";
@@ -30,6 +31,7 @@ export default function DashboardBookingWrapper() {
 
   return (
     <div className="space-y-6">
+      <AlertiInformationBooking />
       <Button>
         <Link
           href={"/dashboard/booking/create"}

@@ -1,7 +1,7 @@
 "use client";
 
-import { bookingColumns } from "@/components/atoms/datacolumn/DataBooking";
-import DialogDetailBooking from "@/components/atoms/dialog/DialogDetailBooking";
+import { bookingAdminColumns } from "@/components/atoms/datacolumn/DataBookingAdmin";
+import DialogDetailBookingAdmin from "@/components/atoms/dialog/DialogDetailBookingAdmin";
 import { DataTable } from "@/components/molecules/datatable/DataTable";
 import { useGetAllBookingFromAdmin } from "@/http/booking/get-all-booking";
 import { Booking } from "@/types/booking/booking";
@@ -29,7 +29,7 @@ export default function DashboardAdminBookingWrapper() {
   return (
     <div>
       <DataTable
-        columns={bookingColumns({
+        columns={bookingAdminColumns({
           detailBooking: handleDialogDetailBookingOpen,
         })}
         data={data?.data ?? []}
@@ -37,7 +37,7 @@ export default function DashboardAdminBookingWrapper() {
       />
 
       {selectedBooking && (
-        <DialogDetailBooking
+        <DialogDetailBookingAdmin
           data={selectedBooking}
           open={isDialogDetailBookingOpen}
           setOpen={setIsDialogDetailBookingOpen}
