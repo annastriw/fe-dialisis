@@ -30,9 +30,11 @@ import {
 import { cn } from "@/lib/utils";
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
+import { useSession } from "next-auth/react";
 
 export default function FormCreateBooking() {
   const router = useRouter();
+  const { data: session } = useSession();
 
   const form = useForm<BookingType>({
     resolver: zodResolver(bookingSchema),
@@ -56,6 +58,24 @@ export default function FormCreateBooking() {
 
   const onSubmit = (body: BookingType) => {
     createBookingHandler(body);
+
+    const userName = session?.user?.name || "Pengguna dari Dialisis Connect";
+
+    const message =
+      `Halo, saya ${userName} sudah booking konsultasi dengan rincian:\n` +
+      `- Judul: ${body.title}\n` +
+      `- Tanggal dan waktu: ${body.booking_time}\n\n` +
+      `Saya akan menunggu balasan pada waktu tersebut.\n\nTerima kasih.`;
+
+    const adminPhone = "081327059189";
+
+    const formattedPhone = adminPhone.startsWith("0")
+      ? "62" + adminPhone.substring(1)
+      : adminPhone;
+
+    const encodedMessage = encodeURIComponent(message);
+
+    window.location.href = `https://wa.me/${formattedPhone}?text=${encodedMessage}`;
   };
 
   return (
