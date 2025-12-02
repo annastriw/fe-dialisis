@@ -67,7 +67,7 @@ export default function FormCreateBooking() {
       `- Tanggal dan waktu: ${body.booking_time}\n\n` +
       `Saya akan menunggu balasan pada waktu tersebut.\n\nTerima kasih.`;
 
-    const adminPhone = "081327059189";
+    const adminPhone = "085640651337";
 
     const formattedPhone = adminPhone.startsWith("0")
       ? "62" + adminPhone.substring(1)
